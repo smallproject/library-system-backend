@@ -57,7 +57,7 @@ public class AuthorsController {
     }
 
     @PostMapping
-    public ResponseEntity<Author> createAuthor(Author author) {
+    public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
         Author savedAuthor = authorService.saveAuthor(author);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAuthor);
     }
