@@ -2,6 +2,7 @@ package nl.smallproject.www.librarysystembackend.services;
 
 import nl.smallproject.www.librarysystembackend.models.Author;
 import nl.smallproject.www.librarysystembackend.repositories.AuthorRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,5 +21,11 @@ public class AuthorService {
 
     public Author saveAuthor(Author author) {
         return authorRepository.save(author);
+    }
+
+    public Author updateAuthor(Long id, Author author) {
+        Author existingAuthor = authorRepository.getReferenceById(id);
+        BeanUtils.copyProperties(author, existingAuthor, "id");
+        return authorRepository.save(existingAuthor);
     }
 }

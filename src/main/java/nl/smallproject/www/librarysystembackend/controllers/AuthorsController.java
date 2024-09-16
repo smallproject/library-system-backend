@@ -62,4 +62,10 @@ public class AuthorsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAuthor);
     }
 
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author author) {
+        authorService.updateAuthor(id, author);
+        return ResponseEntity.noContent().build();
+    }
+
 }
