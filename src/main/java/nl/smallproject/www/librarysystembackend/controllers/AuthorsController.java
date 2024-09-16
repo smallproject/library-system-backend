@@ -2,9 +2,14 @@ package nl.smallproject.www.librarysystembackend.controllers;
 
 import nl.smallproject.www.librarysystembackend.models.Author;
 import nl.smallproject.www.librarysystembackend.repositories.AuthorRepository;
+import nl.smallproject.www.librarysystembackend.services.AuthorService;
+import org.apache.coyote.Response;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/authors")
@@ -34,4 +39,21 @@ public class AuthorsController {
         BeanUtils.copyProperties(author, existingAuthor, "id");
         return authorsRepository.saveAndFlush(existingAuthor);
     }
+
+
+//    Alternatief path, needs to be researched
+
+    private final AuthorService authorService;
+
+    public AuthorsController(AuthorService authorService) {
+        this.authorService = authorService;
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Author>> getAllAuthors() {
+        List<Author> authors = authorService.getAllAuthors();
+        return  ResponseEntity.ok(authors);
+    }
+
+
 }
