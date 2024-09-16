@@ -68,4 +68,10 @@ public class AuthorsController {
         return ResponseEntity.noContent().build();
     }
 
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Author> deleteAuthor(@PathVariable Long id) {
+        authorService.deleteAuthor(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

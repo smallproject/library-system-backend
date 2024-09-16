@@ -23,9 +23,13 @@ public class AuthorService {
         return authorRepository.save(author);
     }
 
-    public Author updateAuthor(Long id, Author author) {
+    public void updateAuthor(Long id, Author author) {
         Author existingAuthor = authorRepository.getReferenceById(id);
         BeanUtils.copyProperties(author, existingAuthor, "id");
-        return authorRepository.save(existingAuthor);
+        authorRepository.save(existingAuthor);
+    }
+
+    public void deleteAuthor(Long id) {
+        authorRepository.deleteById(id);
     }
 }
