@@ -47,6 +47,7 @@ public class BooksController {
 //    Alternatief path, needs to be researched
     private final BookService bookService;
 
+    @GetMapping
     public ResponseEntity<List<Book>> getAllBooks() {
         List<Book> books = bookService.getAllBooks();
         return ResponseEntity.ok(books);
