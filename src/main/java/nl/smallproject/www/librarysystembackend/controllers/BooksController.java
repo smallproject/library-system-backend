@@ -2,15 +2,23 @@ package nl.smallproject.www.librarysystembackend.controllers;
 
 import nl.smallproject.www.librarysystembackend.models.Book;
 import nl.smallproject.www.librarysystembackend.repositories.BookRepository;
+import nl.smallproject.www.librarysystembackend.services.BookService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/books")
 public class BooksController {
     @Autowired
     private BookRepository booksRepository;
+
+    public BooksController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @GetMapping
     @RequestMapping("{id}")
@@ -33,5 +41,14 @@ public class BooksController {
         Book existingBook = booksRepository.getReferenceById(id);
         BeanUtils.copyProperties(book, existingBook, "id");
         return booksRepository.saveAndFlush(existingBook);
+    }
+
+
+//    Alternatief path, needs to be researched
+    private final BookService bookService;
+
+    public ResponseEntity<List<Book>> getAllBooks() {
+        List<Book> books = bookService.getAllBooks();
+        return ResponseEntity.ok(books);
     }
 }
