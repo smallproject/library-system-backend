@@ -59,4 +59,10 @@ public class BooksController {
         Book savedBook = bookService.saveBook(book);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
     }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book) {
+        bookService.updateBook(id, book);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -2,6 +2,7 @@ package nl.smallproject.www.librarysystembackend.services;
 
 import nl.smallproject.www.librarysystembackend.models.Book;
 import nl.smallproject.www.librarysystembackend.repositories.BookRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,5 +21,11 @@ public class BookService {
 
     public Book saveBook(Book book) {
         return bookRepository.save(book);
+    }
+
+    public void updateBook(Long id, Book book) {
+        Book existingBook = bookRepository.getReferenceById(id);
+        BeanUtils.copyProperties(book, existingBook, "id");
+        bookRepository.save(existingBook);
     }
 }
