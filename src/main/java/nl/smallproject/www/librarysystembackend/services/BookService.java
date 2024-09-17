@@ -28,4 +28,8 @@ public class BookService {
         BeanUtils.copyProperties(book, existingBook, "id");
         bookRepository.save(existingBook);
     }
+
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
+    }
 }
