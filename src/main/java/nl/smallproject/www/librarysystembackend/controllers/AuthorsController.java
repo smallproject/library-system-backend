@@ -15,31 +15,31 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/authors")
 public class AuthorsController {
-    @Autowired
-    private AuthorRepository authorsRepository;
-
-    @GetMapping
-    @RequestMapping("{id}")
-    public Author get(@PathVariable Long id) {
-        return authorsRepository.getReferenceById(id);
-    }
-
-    @PostMapping("/addAuthor")
-    public Author create(@RequestBody final Author author) {
-        return authorsRepository.saveAndFlush(author);
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable Long id) {
-        authorsRepository.deleteById(id);
-    }
-
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public Author update(@PathVariable Long id,@RequestBody Author author) {
-        Author existingAuthor = authorsRepository.getReferenceById(id);
-        BeanUtils.copyProperties(author, existingAuthor, "id");
-        return authorsRepository.saveAndFlush(existingAuthor);
-    }
+//    @Autowired
+//    private AuthorRepository authorsRepository;
+//
+//    @GetMapping
+//    @RequestMapping("{id}")
+//    public Author get(@PathVariable Long id) {
+//        return authorsRepository.getReferenceById(id);
+//    }
+//
+//    @PostMapping("/addAuthor")
+//    public Author create(@RequestBody final Author author) {
+//        return authorsRepository.saveAndFlush(author);
+//    }
+//
+//    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+//    public void delete(@PathVariable Long id) {
+//        authorsRepository.deleteById(id);
+//    }
+//
+//    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+//    public Author update(@PathVariable Long id,@RequestBody Author author) {
+//        Author existingAuthor = authorsRepository.getReferenceById(id);
+//        BeanUtils.copyProperties(author, existingAuthor, "id");
+//        return authorsRepository.saveAndFlush(existingAuthor);
+//    }
 
 
 //    Alternatief path, needs to be researched
@@ -50,13 +50,13 @@ public class AuthorsController {
         this.authorService = authorService;
     }
 
-    @GetMapping()
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Author>> getAllAuthors() {
         List<Author> authors = authorService.getAllAuthors();
         return  ResponseEntity.ok(authors);
     }
 
-    @PostMapping
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
         Author savedAuthor = authorService.saveAuthor(author);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAuthor);
@@ -73,5 +73,4 @@ public class AuthorsController {
         authorService.deleteAuthor(id);
         return ResponseEntity.noContent().build();
     }
-
 }
