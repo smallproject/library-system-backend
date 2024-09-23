@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 
 //necessary for reading into the database
-@RepositoryRestController
+//@RepositoryRestController
 public interface AuthorRepository extends JpaRepository<Author, Long> {
 }
