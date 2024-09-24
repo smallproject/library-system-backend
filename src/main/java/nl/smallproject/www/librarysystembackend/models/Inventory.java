@@ -1,9 +1,6 @@
 package nl.smallproject.www.librarysystembackend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -14,8 +11,16 @@ public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "book")
     private Long book;
+
+    @Column(name = "count")
     private int count;
+
+    @Column(name = "date")
     private Date date;
+
+    @Column(name = "available")
     private String available;
 }
