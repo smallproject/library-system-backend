@@ -19,7 +19,7 @@ public class InventoryService {
         return inventoryRepository.findAll();
     }
 
-    public Inventory getInventory(Long id) {
+    public Inventory getInventoryById(Long id) {
         return inventoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Inventory not found with this id: " + id));
     }

@@ -1,10 +1,7 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
 import nl.smallproject.www.librarysystembackend.models.Inventory;
-import nl.smallproject.www.librarysystembackend.repositories.InventoryRepository;
 import nl.smallproject.www.librarysystembackend.services.InventoryService;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +25,7 @@ public class InventoriesController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Inventory> getInventoryById(@PathVariable Long id) {
-        Inventory existingInventory = inventoryService.getInventory(id);
+        Inventory existingInventory = inventoryService.getInventoryById(id);
         return ResponseEntity.ok(existingInventory);
     }
 
