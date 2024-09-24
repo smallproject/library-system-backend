@@ -1,18 +1,21 @@
 package nl.smallproject.www.librarysystembackend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-@Entity(name = "user_reviews")
+@Entity(name = "userreviews")
 public class UserReview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "userid")
     private String userId;
+
+    @Column(name = "rating")
     private int rating;
+
+    @Column(name = "comments")
     private String comments;
 }
