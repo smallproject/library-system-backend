@@ -1,3 +1,4 @@
+-- authors
 INSERT INTO public.authors (firstname, middlename, lastname, dateofbirth)
 VALUES
 ('Emily', 'Rose', 'Johnson', '1990-02-22'),
@@ -46,7 +47,7 @@ VALUES
 ( 'Gary', 'Walter', 'Sanchez', '1990-03-23'),
 ( 'Cynthia', 'Margaret', 'Morris', '1993-10-13');
 
-
+-- inventories
 INSERT INTO public.inventories (book, count, date, available)
 VALUES
 
@@ -100,3 +101,56 @@ VALUES
 ( 148, 5, '2023-10-18', 'no'),
 ( 149, 6, '2023-10-19', 'yes'),
 ( 150, 9, '2023-10-20', 'yes');
+
+
+-- books
+INSERT INTO public.books (isbn, name, description, publicationdate)
+VALUES
+    ('978-0-01-234567-8', 'The Awakening', 'A gripping tale of self-discovery and transformation.', '1995-04-12'),
+    ('978-0-02-345678-9', 'Lost Horizon', 'An epic adventure in the mysterious mountains.', '1987-06-23'),
+    ('978-0-03-456789-0', 'Twilight Whispers', 'A suspenseful romance that defies all odds.', '2000-01-15'),
+    ('978-0-04-567890-1', 'Into the Wild', 'A young man’s journey into the unknown wilderness.', '1996-09-08'),
+    ('978-0-05-678901-2', 'Midnight Dreams', 'A collection of stories that explore the world of dreams.', '2010-11-20'),
+    ('978-0-06-789012-3', 'The River’s Call', 'A tale of love, loss, and redemption set by a river.', '1998-03-14'),
+    ('978-0-07-890123-4', 'Skyline', 'A futuristic adventure in a world where the sky is no limit.', '2020-07-05'),
+    ('978-0-08-901234-5', 'Echoes of Silence', 'A heart-wrenching story of love and war.', '2005-08-29'),
+    ('978-0-09-012345-6', 'The Iron Fortress', 'A dystopian world ruled by iron fists and rebellion.', '2017-12-17'),
+    ('978-0-10-123456-7', 'Starlight Serenade', 'A musical journey through time and space.', '2009-04-30'),
+    ('978-0-11-234567-8', 'Under the Sun', 'An inspiring story of survival in the harshest conditions.', '2012-10-09'),
+    ('978-0-12-345678-9', 'The Broken Crown', 'A power struggle in a kingdom on the verge of collapse.', '2014-05-15'),
+    ('978-0-13-456789-0', 'Whispers in the Dark', 'A thriller that will keep you on the edge of your seat.', '2015-02-18'),
+    ('978-0-14-567890-1', 'Crimson Sands', 'A desert kingdom’s fight for survival and freedom.', '1999-06-25'),
+    ('978-0-15-678901-2', 'Beyond the Horizon', 'A naval expedition into the unknown seas.', '2001-10-12'),
+    ('978-0-16-789012-3', 'The Last Leaf', 'A heartwarming story about love and loss.', '2006-11-02'),
+    ('978-0-17-890123-4', 'Frozen Time', 'A science fiction tale where time itself is frozen.', '1994-12-21'),
+    ('978-0-18-901234-5', 'The Golden Compass', 'A fantastical adventure across alternate worlds.', '1997-02-14'),
+    ('978-0-19-012345-6', 'The Ivory Tower', 'A dark academia mystery in a world of secrets.', '2003-08-01'),
+    ('978-0-20-123456-7', 'The Silent Storm', 'A tale of survival against the forces of nature.', '1993-03-09'),
+    ('978-0-21-234567-8', 'Winds of Change', 'A political thriller set in a country on the brink.', '2016-09-22'),
+    ('978-0-22-345678-9', 'Phoenix Rising', 'A post-apocalyptic story of hope and rebirth.', '2018-11-14'),
+    ('978-0-23-456789-0', 'The Jade Dragon', 'An ancient artifact holds the key to an empire’s future.', '1991-07-17'),
+    ('978-0-24-567890-1', 'The Forgotten Kingdom', 'A lost kingdom buried deep in the jungle.', '2008-12-06'),
+    ('978-0-25-678901-2', 'Shadow of the Mountain', 'A perilous journey to the peak of an unforgiving mountain.', '1992-05-28'),
+    ('978-0-26-789012-3', 'Fire and Ice', 'A battle between two elemental forces that shape the world.', '2007-01-13'),
+    ('978-0-27-890123-4', 'The Dreamcatcher', 'A mystical tale of dreams and their hidden meanings.', '2013-02-19'),
+    ('978-0-28-901234-5', 'The Wolf’s Path', 'A survival story in the snowy wilderness.', '1990-11-25'),
+    ('978-0-29-012345-6', 'The Silver Key', 'An adventure to unlock ancient and mystical doors.', '2019-06-12'),
+    ('978-0-30-123456-7', 'Beneath the Surface', 'A thrilling dive into a world beneath the ocean.', '2004-04-05'),
+    ('978-0-31-234567-8', 'The Black Rose', 'A historical romance set in the royal courts of Europe.', '1996-07-09'),
+    ('978-0-32-345678-9', 'Tales of the Moon', 'A collection of folktales about the moon’s mysteries.', '1998-09-15'),
+    ('978-0-33-456789-0', 'The Crimson Shadow', 'A tale of vengeance and redemption in a war-torn land.', '2015-10-20'),
+    ('978-0-34-567890-1', 'The Glass House', 'A psychological thriller about secrets hidden in plain sight.', '2021-05-18'),
+    ('978-0-35-678901-2', 'The Emerald Sea', 'A journey through the dangers of the deep sea.', '2000-07-01'),
+    ('978-0-36-789012-3', 'Nightfall', 'A post-apocalyptic story where daylight is the enemy.', '2002-03-27'),
+    ('978-0-37-890123-4', 'The Thorn Crown', 'A medieval drama about betrayal and power.', '2011-06-07'),
+    ('978-0-38-901234-5', 'Whispers of the Forest', 'A magical forest hides ancient secrets.', '2008-11-10'),
+    ('978-0-39-012345-6', 'Shadows of the Past', 'A detective uncovers dark truths from history.', '2005-01-17'),
+    ('978-0-40-123456-7', 'The Silver Crescent', 'A journey across deserts and seas in search of a lost relic.', '1993-12-15'),
+    ('978-0-41-234567-8', 'The Serpent’s Tail', 'A dangerous quest to capture a mythical beast.', '1997-10-22'),
+    ('978-0-42-345678-9', 'Wings of Fire', 'A dragon’s rise to power in a fantastical world.', '1990-03-03'),
+    ('978-0-43-456789-0', 'The Broken Shield', 'A hero’s fall and the rise of a new champion.', '2014-08-11'),
+    ('978-0-44-567890-1', 'The Ice Queen', 'A fantasy tale of a frozen kingdom and its ruler.', '2017-01-25'),
+    ('978-0-45-678901-2', 'Fires of Fury', 'A thrilling story of rebellion and resistance.', '1994-09-05'),
+    ('978-0-46-789012-3', 'Echoes of Eternity', 'A sci-fi epic spanning galaxies and time.', '2009-06-23'),
+    ('978-0-47-890123-4', 'The Last Guardian', 'A warrior’s final stand to protect a crumbling world.', '1991-12-29'),
+    ('978-0-48-901234-5', 'The Hidden Path', 'A journey into the unknown, where danger lurks at every turn.', '2003-02-28');
