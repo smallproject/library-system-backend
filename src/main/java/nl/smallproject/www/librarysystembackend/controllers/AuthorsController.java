@@ -56,19 +56,25 @@ public class AuthorsController {
         return  ResponseEntity.ok(authors);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Author> getAuthorById(@PathVariable long id) {
+        Author existingAuthor = authorService.getAuthor(id);
+        return ResponseEntity.ok(existingAuthor);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
         Author savedAuthor = authorService.saveAuthor(author);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAuthor);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author author) {
         authorService.updateAuthor(id, author);
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Author> deleteAuthor(@PathVariable Long id) {
         authorService.deleteAuthor(id);
         return ResponseEntity.noContent().build();
