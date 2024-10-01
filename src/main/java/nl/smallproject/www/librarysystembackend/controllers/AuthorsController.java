@@ -1,5 +1,6 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
+import nl.smallproject.www.librarysystembackend.dtos.AuthorOutputDto;
 import nl.smallproject.www.librarysystembackend.models.Author;
 import nl.smallproject.www.librarysystembackend.services.AuthorService;
 import org.springframework.http.HttpStatus;
@@ -23,10 +24,10 @@ public class AuthorsController {
         return  ResponseEntity.ok(authors);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Author> getAuthorById(@PathVariable long id) {
-        Author existingAuthor = authorService.getAuthorById(id);
-        return ResponseEntity.ok(existingAuthor);
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public ResponseEntity<AuthorOutputDto> getAuthorById(@PathVariable long id) {
+        AuthorOutputDto authorOutputDto = authorService.getAuthorById(id);
+        return ResponseEntity.ok(authorOutputDto);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -35,13 +36,13 @@ public class AuthorsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAuthor);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author author) {
         authorService.updateAuthor(id, author);
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Author> deleteAuthor(@PathVariable Long id) {
         authorService.deleteAuthor(id);
         return ResponseEntity.noContent().build();
