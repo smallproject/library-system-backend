@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +23,14 @@ public class BookService {
         this.bookMapper = bookMapper;
     }
 
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+    public List<BookOutputDto> getAllBooks() {
+        List<Book> books = bookRepository.findAll();
+        List<BookOutputDto> bookOutputDtos = new ArrayList<>();
+
+        for (var entry : books) {
+            bookOutputDtos.add(bookMapper.bookEntityToOutputDto(entry));
+        }
+        return bookOutputDtos;
     }
 
     public BookOutputDto getBookById(Long id) {

@@ -20,9 +20,9 @@ public class BooksController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Book>> getAllBooks() {
-        List<Book> books = bookService.getAllBooks();
-        return ResponseEntity.ok(books);
+    public ResponseEntity<List<BookOutputDto>> getAllBooks() {
+        List<BookOutputDto> bookOutputDtos = bookService.getAllBooks();
+        return ResponseEntity.ok(bookOutputDtos);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
