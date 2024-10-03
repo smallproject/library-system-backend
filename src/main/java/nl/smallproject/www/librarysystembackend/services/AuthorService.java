@@ -21,8 +21,13 @@ public class AuthorService {
         this.authorMapper = authorMapper;
     }
 
-    public List<Author> getAllAuthors() {
-        return authorRepository.findAll();
+    public List<AuthorOutputDto> getAllAuthors() {
+        List<Author> authors = authorRepository.findAll();
+        List<AuthorOutputDto> authorOutputDtos = new ArrayList<>();
+        for (Author author : authors) {
+            authorOutputDtos.add(authorMapper.authorEntityToOutputDto(author));
+        }
+        return authorOutputDtos;
     }
 
     public AuthorOutputDto getAuthorById(Long id) {

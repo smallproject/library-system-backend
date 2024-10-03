@@ -19,9 +19,9 @@ public class AuthorsController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Author>> getAllAuthors() {
-        List<Author> authors = authorService.getAllAuthors();
-        return  ResponseEntity.ok(authors);
+    public ResponseEntity<List<AuthorOutputDto>> getAllAuthors() {
+        List<AuthorOutputDto> authorOutputDtos = authorService.getAllAuthors();
+        return  ResponseEntity.ok(authorOutputDtos);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
