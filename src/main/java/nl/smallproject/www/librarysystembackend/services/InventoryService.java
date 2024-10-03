@@ -8,6 +8,7 @@ import nl.smallproject.www.librarysystembackend.repositories.InventoryRepository
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +22,15 @@ public class InventoryService {
         this.inventoryMapper = inventoryMapper;
     }
 
-    public List<Inventory> getAllInventories() {
-        return inventoryRepository.findAll();
+    public List<InventoryOutputDto> getAllInventories() {
+        List<Inventory> inventories = inventoryRepository.findAll();
+        List<InventoryOutputDto> inventoryOutputDtos = new ArrayList<>();
+
+        for (var inventory : inventories) {
+            inventoryOutputDtos.add(inventoryMapper.inventoryEntityToOutputDto(inventory));
+        }
+
+        return inventoryOutputDtos;
     }
 
     public InventoryOutputDto getInventoryById(Long id) {

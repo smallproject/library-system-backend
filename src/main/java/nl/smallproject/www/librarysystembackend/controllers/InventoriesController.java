@@ -19,9 +19,9 @@ public class InventoriesController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Inventory>> getAllInventories() {
-        List<Inventory> inventories = inventoryService.getAllInventories();
-        return ResponseEntity.ok(inventories);
+    public ResponseEntity<List<InventoryOutputDto>> getAllInventories() {
+        List<InventoryOutputDto> inventoryOutputDtos = inventoryService.getAllInventories();
+        return ResponseEntity.ok(inventoryOutputDtos);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
