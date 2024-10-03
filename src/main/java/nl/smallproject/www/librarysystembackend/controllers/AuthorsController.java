@@ -1,49 +1,22 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
+import jakarta.validation.Valid;
+import nl.smallproject.www.librarysystembackend.dtos.AuthorInputDto;
+import nl.smallproject.www.librarysystembackend.dtos.AuthorOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.AuthorUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.Author;
-import nl.smallproject.www.librarysystembackend.repositories.AuthorRepository;
 import nl.smallproject.www.librarysystembackend.services.AuthorService;
-import org.apache.coyote.Response;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/authors")
 public class AuthorsController {
-//    @Autowired
-//    private AuthorRepository authorsRepository;
-//
-//    @GetMapping
-//    @RequestMapping("{id}")
-//    public Author get(@PathVariable Long id) {
-//        return authorsRepository.getReferenceById(id);
-//    }
-//
-//    @PostMapping("/addAuthor")
-//    public Author create(@RequestBody final Author author) {
-//        return authorsRepository.saveAndFlush(author);
-//    }
-//
-//    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-//    public void delete(@PathVariable Long id) {
-//        authorsRepository.deleteById(id);
-//    }
-//
-//    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-//    public Author update(@PathVariable Long id,@RequestBody Author author) {
-//        Author existingAuthor = authorsRepository.getReferenceById(id);
-//        BeanUtils.copyProperties(author, existingAuthor, "id");
-//        return authorsRepository.saveAndFlush(existingAuthor);
-//    }
-
-
-//    Alternatief path, needs to be researched
-
     private final AuthorService authorService;
 
     public AuthorsController(AuthorService authorService) {
@@ -51,25 +24,39 @@ public class AuthorsController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Author>> getAllAuthors() {
-        List<Author> authors = authorService.getAllAuthors();
-        return  ResponseEntity.ok(authors);
+    public ResponseEntity<List<AuthorOutputDto>> getAllAuthors() {
+        List<AuthorOutputDto> authorOutputDtos = authorService.getAllAuthors();
+        return  ResponseEntity.ok(authorOutputDtos);
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public ResponseEntity<AuthorOutputDto> getAuthorById(@PathVariable Long id) {
+        AuthorOutputDto authorOutputDto = authorService.getAuthorById(id);
+        return ResponseEntity.ok(authorOutputDto);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
-        Author savedAuthor = authorService.saveAuthor(author);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedAuthor);
+    public ResponseEntity<Object> createAuthor(@Valid @RequestBody AuthorInputDto authorInputDto) {
+        var newAuthor = authorService.createAuthor(authorInputDto);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/" + newAuthor.getId())
+                .buildAndExpand(newAuthor)
+                .toUri();
+
+        return ResponseEntity.created(location).eTag(String.valueOf(HttpStatus.CREATED)).body(newAuthor);
+//        return ResponseEntity.created(location).body("Author created");
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author author) {
-        authorService.updateAuthor(id, author);
+    public ResponseEntity<Object> updateAuthor(@PathVariable Long id,@Valid @RequestBody AuthorUpdateDto authorUpdateDto) {
+        authorService.updateAuthor(id, authorUpdateDto);
         return ResponseEntity.noContent().build();
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Author> deleteAuthor(@PathVariable Long id) {
+    public ResponseEntity<Object> deleteAuthor(@PathVariable Long id) {
         authorService.deleteAuthor(id);
         return ResponseEntity.noContent().build();
     }

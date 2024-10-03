@@ -26,4 +26,10 @@ public class ExceptionController {
 
         return new ResponseEntity<>(errors, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
+
+    //    Deze exception handler vangt elke IndexOutOfBoundsException (deze exception komt uit de java.utils package) op die naar de gebruiker gegooid wordt en returned daar voor in de plaats een ResponseEntity met de Message en de NOT_FOUND-status (404)
+    @ExceptionHandler(value = IndexOutOfBoundsException.class)
+    public ResponseEntity<Object> exception(IndexOutOfBoundsException exception) {
+        return new ResponseEntity<>("Dit id staat niet in de database", HttpStatus.NOT_FOUND);
+    }
 }

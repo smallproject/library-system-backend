@@ -1,27 +1,21 @@
-package nl.smallproject.www.librarysystembackend.models;
+package nl.smallproject.www.librarysystembackend.dtos;
 
-import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.util.Date;
 
-//@Data
-@Entity(name = "books")
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BookOutputDto {
     private Long id;
 
-    @Column(name = "isbn")
     private String isbn;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "publicationdate")
     private Date publicationDate;
 
     public Long getId() {

@@ -1,52 +1,34 @@
-package nl.smallproject.www.librarysystembackend.models;
+package nl.smallproject.www.librarysystembackend.dtos;
 
-import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.persistence.Column;
 
 import java.util.Date;
 
-//necessary for writing into the database
-//@Data
-@Entity(name = "authors")
-public class Author {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AuthorOutputDto {
     private Long id;
 
-    @Column(name = "firstname")
     private String firstName;
 
-    @Column(name = "middlename")
     private String middleName;
 
-    @Column(name = "lastname")
     private String lastName;
 
-    @Column(name = "dateofbirth")
     private Date dateOfBirth;
 
-    @Column(name = "nationality")
     private String nationality;
 
-    @Column(name = "dateofdeath")
     private Date dateOfDeath;
 
-    @Column(name = "bio")
     private String bio;
 
-    @Column(name = "website")
     private String website;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "awards")
     private String awards;
 
-    @Column(name = "activeyears")
     private String activeYears;
 
-    @Column(name = "profilepictureurl")
     private String profilePictureUrl;
 
     public Long getId() {
