@@ -1,12 +1,17 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
+import jakarta.validation.Valid;
+import nl.smallproject.www.librarysystembackend.dtos.AuthorInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.AuthorOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.AuthorUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.Author;
 import nl.smallproject.www.librarysystembackend.services.AuthorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -51,7 +56,7 @@ public class AuthorsController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Author> deleteAuthor(@PathVariable Long id) {
+    public ResponseEntity<Object> deleteAuthor(@PathVariable Long id) {
         authorService.deleteAuthor(id);
         return ResponseEntity.noContent().build();
     }

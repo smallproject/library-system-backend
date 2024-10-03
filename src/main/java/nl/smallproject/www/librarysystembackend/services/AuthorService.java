@@ -1,6 +1,8 @@
 package nl.smallproject.www.librarysystembackend.services;
 
+import nl.smallproject.www.librarysystembackend.dtos.AuthorInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.AuthorOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.AuthorUpdateDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.AuthorMapper;
 import nl.smallproject.www.librarysystembackend.models.Author;
@@ -8,6 +10,7 @@ import nl.smallproject.www.librarysystembackend.repositories.AuthorRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
