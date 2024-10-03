@@ -1,5 +1,6 @@
 package nl.smallproject.www.librarysystembackend.services;
 
+import nl.smallproject.www.librarysystembackend.dtos.InventoryInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.InventoryOutputDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.InventoryMapper;
@@ -47,7 +48,8 @@ public class InventoryService {
 
     }
 
-    public Inventory saveInventory(Inventory inventory) {
+    public Inventory createInventory(InventoryInputDto inventoryInputDto) {
+        Inventory inventory = inventoryMapper.inventoryInputDtoToEntity(inventoryInputDto);
         return inventoryRepository.save(inventory);
     }
 

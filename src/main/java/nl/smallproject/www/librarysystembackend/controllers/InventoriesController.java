@@ -1,12 +1,15 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
+import nl.smallproject.www.librarysystembackend.dtos.InventoryInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.InventoryOutputDto;
 import nl.smallproject.www.librarysystembackend.models.Inventory;
 import nl.smallproject.www.librarysystembackend.services.InventoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -31,9 +34,15 @@ public class InventoriesController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Inventory> createInventory(@RequestBody final Inventory inventory) {
-        Inventory savedInventory = inventoryService.saveInventory(inventory);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedInventory);
+    public ResponseEntity<Object> createInventory(@RequestBody final InventoryInputDto inventoryInputDto) {
+        Inventory newInventory = inventoryService.createInventory(inventoryInputDto);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/" + newInventory.getId())
+                .buildAndExpand(newInventory)
+                .toUri();
+
+        return ResponseEntity.created(location).eTag(String.valueOf(HttpStatus.CREATED)).body(newInventory);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
