@@ -42,8 +42,10 @@ public class AuthorService {
         }
     }
 
-    public Author saveAuthor(Author author) {
-        return authorRepository.save(author);
+    public Author createAuthor(AuthorInputDto authorInputDto) {
+        Author author = authorMapper.authorInputDtoToEntity(authorInputDto);
+        authorRepository.save(author);
+        return author;
     }
 
     public void updateAuthor(Long id, Author author) {

@@ -31,9 +31,17 @@ public class AuthorsController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
-        Author savedAuthor = authorService.saveAuthor(author);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedAuthor);
+    public ResponseEntity<Object> createAuthor(@Valid @RequestBody AuthorInputDto authorInputDto) {
+        var newAuthor = authorService.createAuthor(authorInputDto);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/" + newAuthor.getId())
+                .buildAndExpand(newAuthor)
+                .toUri();
+
+        return ResponseEntity.created(location).eTag(String.valueOf(HttpStatus.CREATED)).body(newAuthor);
+//        return ResponseEntity.created(location).body("Author created");
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
