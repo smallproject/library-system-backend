@@ -42,4 +42,21 @@ public class AuthorMapper {
         author.setProfilePictureUrl(authorInputDto.getProfilePictureUrl());
         return author;
     }
+
+    public AuthorOutputDto AuthorEntityToOutputDto(Author author) {
+        AuthorOutputDto authorOutputDto = new AuthorOutputDto();
+        authorOutputDto.setFirstName(author.getFirstName());
+        authorOutputDto.setMiddleName(author.getMiddleName());
+        authorOutputDto.setLastName(author.getLastName());
+        authorOutputDto.setDateOfBirth(author.getDateOfBirth());
+        authorOutputDto.setNationality(author.getNationality());
+        authorOutputDto.setDateOfDeath(author.getDateOfDeath());
+        authorOutputDto.setBio(author.getBio());
+        authorOutputDto.setWebsite(author.getWebsite());
+        authorOutputDto.setEmail(author.getEmail());
+        authorOutputDto.setAwards(author.getAwards());
+        authorOutputDto.setActiveYears(author.getActiveYears());
+        authorOutputDto.setProfilePictureUrl(author.getProfilePictureUrl());
+        return authorOutputDto;
+    }
 }
