@@ -53,7 +53,7 @@ public class InventoriesController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Inventory> deleteInventory(@PathVariable Long id) {
+    public ResponseEntity<Object> deleteInventory(@PathVariable Long id) {
         inventoryService.deleteInventory(id);
         return ResponseEntity.noContent().build();
     }
