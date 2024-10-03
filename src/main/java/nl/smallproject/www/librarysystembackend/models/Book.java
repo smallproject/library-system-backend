@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-//@Data
 @Entity(name = "books")
 public class Book {
     @Id
@@ -29,7 +28,7 @@ public class Book {
     private String genre;
 
     @Column(name = "pagecount")
-    private Integer pagecount;
+    private Integer pageCount;
 
     @Column(name = "language")
     private String language;
@@ -38,7 +37,7 @@ public class Book {
     private String coverImageUrl;
 
     @Column(name = "descriptionsummary")
-    private String descriptionsummary;
+    private String descriptionSummary;
 
     @Column(name = "rating")
     private Double rating;
@@ -92,12 +91,12 @@ public class Book {
         this.genre = genre;
     }
 
-    public Integer getPagecount() {
-        return pagecount;
+    public Integer getPageCount() {
+        return pageCount;
     }
 
-    public void setPagecount(Integer pagecount) {
-        this.pagecount = pagecount;
+    public void setPageCount(Integer pageCount) {
+        this.pageCount = pageCount;
     }
 
     public String getLanguage() {
@@ -116,12 +115,12 @@ public class Book {
         this.coverImageUrl = coverImageUrl;
     }
 
-    public String getDescriptionsummary() {
-        return descriptionsummary;
+    public String getDescriptionSummary() {
+        return descriptionSummary;
     }
 
-    public void setDescriptionsummary(String descriptionsummary) {
-        this.descriptionsummary = descriptionsummary;
+    public void setDescriptionSummary(String descriptionSummary) {
+        this.descriptionSummary = descriptionSummary;
     }
 
     public Double getRating() {
