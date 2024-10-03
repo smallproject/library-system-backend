@@ -11,10 +11,24 @@ public class InventoryMapper {
     public InventoryOutputDto inventoryEntityToOutputDto(Inventory inventory) {
         InventoryOutputDto inventoryOutputDto = new InventoryOutputDto();
         inventoryOutputDto.setId(inventory.getId());
-        inventoryOutputDto.setBook(inventory.getBook());
-        inventoryOutputDto.setCount(inventory.getCount());
-        inventoryOutputDto.setDate(inventory.getDate());
-        inventoryOutputDto.setAvailable(inventory.getAvailable());
+        inventoryOutputDto.setLocation(inventory.getLocation());
+        inventoryOutputDto.setCondition(inventory.getCondition());
+        inventoryOutputDto.setAcquisitionMethod(inventory.getAcquisitionMethod());
+        inventoryOutputDto.setSupplier(inventory.getSupplier());
+        inventoryOutputDto.setLastInventoryCheck(inventory.getLastInventoryCheck());
+        inventoryOutputDto.setBorrowCount(inventory.getBorrowCount());
+        inventoryOutputDto.setBorrowedStatus(inventory.getBorrowedStatus());
+        inventoryOutputDto.setReserveStatus(inventory.getReserveStatus());
+        inventoryOutputDto.setReplacementCost(inventory.getReplacementCost());
+        inventoryOutputDto.setEdition(inventory.getEdition());
+        inventoryOutputDto.setPublisher(inventory.getPublisher());
+        inventoryOutputDto.setNotes(inventory.getNotes());
+        inventoryOutputDto.setBarcode(inventory.getBarcode());
+        inventoryOutputDto.setISBN(inventory.getISBN());
+        inventoryOutputDto.setRestockDate(inventory.getRestockDate());
+        inventoryOutputDto.setTimesLost(inventory.getTimesLost());
+        inventoryOutputDto.setCirculationStatus(inventory.getCirculationStatus());
+        inventoryOutputDto.setPurchaseDate(inventory.getPurchaseDate());
         return inventoryOutputDto;
     }
 
