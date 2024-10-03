@@ -2,6 +2,7 @@ package nl.smallproject.www.librarysystembackend.mappers;
 
 import nl.smallproject.www.librarysystembackend.dtos.AuthorInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.AuthorOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.AuthorUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.Author;
 import org.springframework.stereotype.Component;
 
@@ -40,6 +41,23 @@ public class AuthorMapper {
         author.setAwards(authorInputDto.getAwards());
         author.setActiveYears(authorInputDto.getActiveYears());
         author.setProfilePictureUrl(authorInputDto.getProfilePictureUrl());
+        return author;
+    }
+
+    public Author authorUpdateDtoToEntity(AuthorUpdateDto authorUpdateDto) {
+        Author author = new Author();
+        author.setFirstName(authorUpdateDto.getFirstName());
+        author.setMiddleName(authorUpdateDto.getMiddleName());
+        author.setLastName(authorUpdateDto.getLastName());
+        author.setDateOfBirth(authorUpdateDto.getDateOfBirth());
+        author.setNationality(authorUpdateDto.getNationality());
+        author.setDateOfDeath(authorUpdateDto.getDateOfDeath());
+        author.setBio(authorUpdateDto.getBio());
+        author.setWebsite(authorUpdateDto.getWebsite());
+        author.setEmail(authorUpdateDto.getEmail());
+        author.setAwards(authorUpdateDto.getAwards());
+        author.setActiveYears(authorUpdateDto.getActiveYears());
+        author.setProfilePictureUrl(authorUpdateDto.getProfilePictureUrl());
         return author;
     }
 }
