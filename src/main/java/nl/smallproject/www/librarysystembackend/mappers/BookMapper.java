@@ -1,5 +1,6 @@
 package nl.smallproject.www.librarysystembackend.mappers;
 
+import nl.smallproject.www.librarysystembackend.dtos.BookInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.BookOutputDto;
 import nl.smallproject.www.librarysystembackend.models.Book;
 import org.springframework.stereotype.Component;
@@ -14,5 +15,14 @@ public class BookMapper {
         bookOutputDto.setDescription(book.getDescription());
         bookOutputDto.setPublicationDate(book.getPublicationDate());
         return bookOutputDto;
+    }
+
+    public Book bookInputDtoToEntity(BookInputDto bookInputDto) {
+        Book book = new Book();
+        book.setIsbn(bookInputDto.getIsbn());
+        book.setName(bookInputDto.getName());
+        book.setDescription(bookInputDto.getDescription());
+        book.setPublicationDate(bookInputDto.getPublicationDate());
+        return book;
     }
 }
