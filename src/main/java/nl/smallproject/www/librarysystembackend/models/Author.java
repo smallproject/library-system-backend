@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 //necessary for writing into the database
-@Data
+//@Data
 @Entity(name = "authors")
 public class Author {
     @Id
