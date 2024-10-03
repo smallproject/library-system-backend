@@ -1,17 +1,50 @@
 package nl.smallproject.www.librarysystembackend.dtos;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.Date;
 
 public class InventoryOutputDto {
     private Long id;
 
-    private Long book;
+    private String location;
 
-    private int count;
+    private String condition;
 
-    private Date date;
+    private String acquisitionMethod;
 
-    private String available;
+    private String supplier;
+
+    private Date lastInventoryCheck;
+
+    private Integer borrowCount;
+
+    private String borrowedStatus;
+
+    private String reserveStatus;
+
+    private Double replacementCost;
+
+    private String edition;
+
+    private String publisher;
+
+    private String notes;
+
+    private String barcode;
+
+    private String ISBN;
+
+    private Date restockDate;
+
+    private Integer timesLost;
+
+    private String circulationStatus;
+
+    private Date purchaseDate;
 
     public Long getId() {
         return id;
@@ -21,35 +54,147 @@ public class InventoryOutputDto {
         this.id = id;
     }
 
-    public Long getBook() {
-        return book;
+    public String getLocation() {
+        return location;
     }
 
-    public void setBook(Long book) {
-        this.book = book;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public int getCount() {
-        return count;
+    public String getCondition() {
+        return condition;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 
-    public Date getDate() {
-        return date;
+    public String getAcquisitionMethod() {
+        return acquisitionMethod;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setAcquisitionMethod(String acquisitionMethod) {
+        this.acquisitionMethod = acquisitionMethod;
     }
 
-    public String getAvailable() {
-        return available;
+    public String getSupplier() {
+        return supplier;
     }
 
-    public void setAvailable(String available) {
-        this.available = available;
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public Date getLastInventoryCheck() {
+        return lastInventoryCheck;
+    }
+
+    public void setLastInventoryCheck(Date lastInventoryCheck) {
+        this.lastInventoryCheck = lastInventoryCheck;
+    }
+
+    public Integer getBorrowCount() {
+        return borrowCount;
+    }
+
+    public void setBorrowCount(Integer borrowCount) {
+        this.borrowCount = borrowCount;
+    }
+
+    public String getBorrowedStatus() {
+        return borrowedStatus;
+    }
+
+    public void setBorrowedStatus(String borrowedStatus) {
+        this.borrowedStatus = borrowedStatus;
+    }
+
+    public String getReserveStatus() {
+        return reserveStatus;
+    }
+
+    public void setReserveStatus(String reserveStatus) {
+        this.reserveStatus = reserveStatus;
+    }
+
+    public Double getReplacementCost() {
+        return replacementCost;
+    }
+
+    public void setReplacementCost(Double replacementCost) {
+        this.replacementCost = replacementCost;
+    }
+
+    public String getEdition() {
+        return edition;
+    }
+
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    public Date getRestockDate() {
+        return restockDate;
+    }
+
+    public void setRestockDate(Date restockDate) {
+        this.restockDate = restockDate;
+    }
+
+    public Integer getTimesLost() {
+        return timesLost;
+    }
+
+    public void setTimesLost(Integer timesLost) {
+        this.timesLost = timesLost;
+    }
+
+    public String getCirculationStatus() {
+        return circulationStatus;
+    }
+
+    public void setCirculationStatus(String circulationStatus) {
+        this.circulationStatus = circulationStatus;
+    }
+
+    public Date getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(Date purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 }
