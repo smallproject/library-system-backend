@@ -5,7 +5,6 @@ import lombok.Data;
 
 import java.util.Date;
 
-@Data
 @Entity(name = "inventories")
 public class Inventory {
     @Id
@@ -23,4 +22,44 @@ public class Inventory {
 
     @Column(name = "available")
     private String available;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getBook() {
+        return book;
+    }
+
+    public void setBook(Long book) {
+        this.book = book;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
+    }
 }
