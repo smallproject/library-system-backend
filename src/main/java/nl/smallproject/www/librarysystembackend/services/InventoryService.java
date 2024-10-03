@@ -2,6 +2,7 @@ package nl.smallproject.www.librarysystembackend.services;
 
 import nl.smallproject.www.librarysystembackend.dtos.InventoryInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.InventoryOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.InventoryUpdateDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.InventoryMapper;
 import nl.smallproject.www.librarysystembackend.models.Inventory;
@@ -53,9 +54,11 @@ public class InventoryService {
         return inventoryRepository.save(inventory);
     }
 
-    public void updateInventory(Long id, Inventory inventory) {
+    public void updateInventory(Long id, InventoryUpdateDto inventoryUpdateDto) {
         Inventory existingInventory = inventoryRepository.getReferenceById(id);
-        BeanUtils.copyProperties(inventory, existingInventory, "id");
+        Inventory updatedInventory = inventoryMapper.inventoryUpdateDtoToEntity(inventoryUpdateDto);
+
+        BeanUtils.copyProperties(updatedInventory, existingInventory, "id");
         inventoryRepository.save(existingInventory);
     }
 
