@@ -12,11 +12,27 @@ public class BookOutputDto {
 
     private String isbn;
 
-    private String name;
-
-    private String description;
+    private String title;
 
     private Date publicationDate;
+
+    private String genre;
+
+    private Integer pagecount;
+
+    private String language;
+
+    private String coverImageUrl;
+
+    private String descriptionsummary;
+
+    private Double rating;
+
+    private Integer copiesAvailable;
+
+    private Date dateAdded;
+
+    private String status;
 
     public Long getId() {
         return id;
@@ -34,20 +50,12 @@ public class BookOutputDto {
         this.isbn = isbn;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Date getPublicationDate() {
@@ -56,5 +64,77 @@ public class BookOutputDto {
 
     public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public Integer getPagecount() {
+        return pagecount;
+    }
+
+    public void setPagecount(Integer pagecount) {
+        this.pagecount = pagecount;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getCoverImageUrl() {
+        return coverImageUrl;
+    }
+
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
+    }
+
+    public String getDescriptionsummary() {
+        return descriptionsummary;
+    }
+
+    public void setDescriptionsummary(String descriptionsummary) {
+        this.descriptionsummary = descriptionsummary;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public Integer getCopiesAvailable() {
+        return copiesAvailable;
+    }
+
+    public void setCopiesAvailable(Integer copiesAvailable) {
+        this.copiesAvailable = copiesAvailable;
+    }
+
+    public Date getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

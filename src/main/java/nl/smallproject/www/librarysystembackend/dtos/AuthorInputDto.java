@@ -9,19 +9,19 @@ import java.util.Date;
 
 public class AuthorInputDto {
 
-    @NotBlank(message = "{author.firstname.notblank}")
-    @Size(min = 3, max = 255, message = "{author.firstname.size}")
+    @NotBlank(message = "{author.firstName.notblank}")
+    @Size(min = 3, max = 255, message = "{author.firstName.size}")
     private String firstName;
 
-    @NotBlank(message = "{author.middlename.notblank}")
-    @Size(min = 3, max = 255, message = "{author.middlename.size}")
+    @NotBlank(message = "{author.middleName.notblank}")
+    @Size(min = 3, max = 255, message = "{author.middleName.size}")
     private String middleName;
 
-    @NotBlank(message = "{author.lastname.notblank}")
-    @Size(min = 3, max = 255, message = "{author.lastname.size}")
+    @NotBlank(message = "{author.lastName.notblank}")
+    @Size(min = 3, max = 255, message = "{author.lastName.size}")
     private String lastName;
 
-    @NotNull(message = "{author.dateofbirth.notblank}" )
+    @NotNull(message = "{author.dateOfBirth.notblank}" )
     private Date dateOfBirth;
 
     @NotBlank(message = "{author.nationality.notblank}")
@@ -40,7 +40,7 @@ public class AuthorInputDto {
     private String website;
 
     @NotBlank(message = "{author.email.notblank}")
-    @Email
+    @Email(message = "{author.email.email}")
     @Size(min = 3, max = 255, message = "{author.email.size}")
     private String email;
 
@@ -48,43 +48,43 @@ public class AuthorInputDto {
     @Size(min = 3, max = 255, message = "{author.awards.size}")
     private String awards;
 
-    @NotBlank(message = "{author.activeyears.notblank}")
-    @Size(min = 3, max = 255, message = "{author.activeyears.size}")
+    @NotBlank(message = "{author.activeYears.notblank}")
+    @Size(min = 3, max = 255, message = "{author.activeYears.size}")
     private String activeYears;
 
-    @NotBlank(message = "{author.profilepictureurl.notblank}")
-    @Size(min = 3, max = 255, message = "{author.profilepictureurl.size}")
+    @NotBlank(message = "{author.profilePictureUrl.notblank}")
+    @Size(min = 3, max = 255, message = "{author.profilePictureUrl.size}")
     private String profilePictureUrl;
 
-    public @NotBlank(message = "{author.firstname.notblank}") @Size(min = 3, max = 255, message = "{author.firstname.size}") String getFirstName() {
+    public @NotBlank(message = "{author.firstName.notblank}") @Size(min = 3, max = 255, message = "{author.firstName.size}") String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(@NotBlank(message = "{author.firstname.notblank}") @Size(min = 3, max = 255, message = "{author.firstname.size}") String firstName) {
+    public void setFirstName(@NotBlank(message = "{author.firstName.notblank}") @Size(min = 3, max = 255, message = "{author.firstName.size}") String firstName) {
         this.firstName = firstName;
     }
 
-    public @NotBlank(message = "{author.middlename.notblank}") @Size(min = 3, max = 255, message = "{author.middlename.size}") String getMiddleName() {
+    public @NotBlank(message = "{author.middleName.notblank}") @Size(min = 3, max = 255, message = "{author.middleName.size}") String getMiddleName() {
         return middleName;
     }
 
-    public void setMiddleName(@NotBlank(message = "{author.middlename.notblank}") @Size(min = 3, max = 255, message = "{author.middlename.size}") String middleName) {
+    public void setMiddleName(@NotBlank(message = "{author.middleName.notblank}") @Size(min = 3, max = 255, message = "{author.middleName.size}") String middleName) {
         this.middleName = middleName;
     }
 
-    public @NotBlank(message = "{author.lastname.notblank}") @Size(min = 3, max = 255, message = "{author.lastname.size}") String getLastName() {
+    public @NotBlank(message = "{author.lastName.notblank}") @Size(min = 3, max = 255, message = "{author.lastName.size}") String getLastName() {
         return lastName;
     }
 
-    public void setLastName(@NotBlank(message = "{author.lastname.notblank}") @Size(min = 3, max = 255, message = "{author.lastname.size}") String lastName) {
+    public void setLastName(@NotBlank(message = "{author.lastName.notblank}") @Size(min = 3, max = 255, message = "{author.lastName.size}") String lastName) {
         this.lastName = lastName;
     }
 
-    public @NotNull(message = "{author.dateofbirth.notblank}") Date getDateOfBirth() {
+    public @NotNull(message = "{author.dateOfBirth.notblank}") Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(@NotNull(message = "{author.dateofbirth.notblank}") Date dateOfBirth) {
+    public void setDateOfBirth(@NotNull(message = "{author.dateOfBirth.notblank}") Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -120,11 +120,11 @@ public class AuthorInputDto {
         this.website = website;
     }
 
-    public @NotBlank(message = "{author.email.notblank}") @Email @Size(min = 3, max = 255, message = "{author.email.size}") String getEmail() {
+    public @NotBlank(message = "{author.email.notblank}") @Email(message = "{author.email.email}") @Size(min = 3, max = 255, message = "{author.email.size}") String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotBlank(message = "{author.email.notblank}") @Email @Size(min = 3, max = 255, message = "{author.email.size}") String email) {
+    public void setEmail(@NotBlank(message = "{author.email.notblank}") @Email(message = "{author.email.email}") @Size(min = 3, max = 255, message = "{author.email.size}") String email) {
         this.email = email;
     }
 
@@ -136,19 +136,19 @@ public class AuthorInputDto {
         this.awards = awards;
     }
 
-    public @NotBlank(message = "{author.activeyears.notblank}") @Size(min = 3, max = 255, message = "{author.activeyears.size}") String getActiveYears() {
+    public @NotBlank(message = "{author.activeYears.notblank}") @Size(min = 3, max = 255, message = "{author.activeYears.size}") String getActiveYears() {
         return activeYears;
     }
 
-    public void setActiveYears(@NotBlank(message = "{author.activeyears.notblank}") @Size(min = 3, max = 255, message = "{author.activeyears.size}") String activeYears) {
+    public void setActiveYears(@NotBlank(message = "{author.activeYears.notblank}") @Size(min = 3, max = 255, message = "{author.activeYears.size}") String activeYears) {
         this.activeYears = activeYears;
     }
 
-    public @NotBlank(message = "{author.profilepictureurl.notblank}") @Size(min = 3, max = 255, message = "{author.profilepictureurl.size}") String getProfilePictureUrl() {
+    public @NotBlank(message = "{author.profilePictureUrl.notblank}") @Size(min = 3, max = 255, message = "{author.profilePictureUrl.size}") String getProfilePictureUrl() {
         return profilePictureUrl;
     }
 
-    public void setProfilePictureUrl(@NotBlank(message = "{author.profilepictureurl.notblank}") @Size(min = 3, max = 255, message = "{author.profilepictureurl.size}") String profilePictureUrl) {
+    public void setProfilePictureUrl(@NotBlank(message = "{author.profilePictureUrl.notblank}") @Size(min = 3, max = 255, message = "{author.profilePictureUrl.size}") String profilePictureUrl) {
         this.profilePictureUrl = profilePictureUrl;
     }
 }
