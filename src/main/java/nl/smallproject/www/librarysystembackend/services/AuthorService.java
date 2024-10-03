@@ -48,9 +48,10 @@ public class AuthorService {
         return author;
     }
 
-    public void updateAuthor(Long id, Author author) {
+    public void updateAuthor(Long id, AuthorUpdateDto authorUpdateDto) {
         Author existingAuthor = authorRepository.getReferenceById(id);
-        BeanUtils.copyProperties(author, existingAuthor, "id");
+        Author updatedAuthor = authorMapper.authorUpdateDtoToEntity(authorUpdateDto);
+        BeanUtils.copyProperties(updatedAuthor, existingAuthor, "id");
         authorRepository.save(existingAuthor);
     }
 
