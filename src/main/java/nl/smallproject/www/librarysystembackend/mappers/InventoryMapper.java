@@ -2,6 +2,7 @@ package nl.smallproject.www.librarysystembackend.mappers;
 
 import nl.smallproject.www.librarysystembackend.dtos.InventoryInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.InventoryOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.InventoryUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.Inventory;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,15 @@ public class InventoryMapper {
         inventory.setCount(inventoryInputDto.getCount());
         inventory.setDate(inventoryInputDto.getDate());
         inventory.setAvailable(inventoryInputDto.getAvailable());
+        return inventory;
+    }
+
+    public Inventory inventoryUpdateDtoToEntity(InventoryUpdateDto inventoryUpdateDto) {
+        Inventory inventory = new Inventory();
+        inventory.setBook(inventoryUpdateDto.getBook());
+        inventory.setCount(inventoryUpdateDto.getCount());
+        inventory.setDate(inventoryUpdateDto.getDate());
+        inventory.setAvailable(inventoryUpdateDto.getAvailable());
         return inventory;
     }
 }
