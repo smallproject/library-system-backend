@@ -1,5 +1,6 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
+import nl.smallproject.www.librarysystembackend.dtos.BookOutputDto;
 import nl.smallproject.www.librarysystembackend.models.Book;
 import nl.smallproject.www.librarysystembackend.services.BookService;
 import org.springframework.http.HttpStatus;
@@ -24,10 +25,10 @@ public class BooksController {
         return ResponseEntity.ok(books);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Book> getBookById(@PathVariable long id) {
-        Book existingBook = bookService.getBookById(id);
-        return ResponseEntity.ok(existingBook);
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public ResponseEntity<BookOutputDto> getBookById(@PathVariable long id) {
+        BookOutputDto bookOutputDto = bookService.getBookById(id);
+        return ResponseEntity.ok(bookOutputDto);
     }
 
     @RequestMapping(method = RequestMethod.POST)
