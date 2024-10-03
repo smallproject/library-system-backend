@@ -1,5 +1,6 @@
 package nl.smallproject.www.librarysystembackend.dtos;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -39,6 +40,7 @@ public class AuthorInputDto {
     private String website;
 
     @NotBlank(message = "{author.email.notblank}")
+    @Email
     @Size(min = 3, max = 255, message = "{author.email.size}")
     private String email;
 
@@ -118,11 +120,11 @@ public class AuthorInputDto {
         this.website = website;
     }
 
-    public @NotBlank(message = "{author.email.notblank}") @Size(min = 3, max = 255, message = "{author.email.size}") String getEmail() {
+    public @NotBlank(message = "{author.email.notblank}") @Email @Size(min = 3, max = 255, message = "{author.email.size}") String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotBlank(message = "{author.email.notblank}") @Size(min = 3, max = 255, message = "{author.email.size}") String email) {
+    public void setEmail(@NotBlank(message = "{author.email.notblank}") @Email @Size(min = 3, max = 255, message = "{author.email.size}") String email) {
         this.email = email;
     }
 
