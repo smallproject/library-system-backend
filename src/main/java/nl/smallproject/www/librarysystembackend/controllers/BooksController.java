@@ -1,12 +1,15 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
+import nl.smallproject.www.librarysystembackend.dtos.BookInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.BookOutputDto;
 import nl.smallproject.www.librarysystembackend.models.Book;
 import nl.smallproject.www.librarysystembackend.services.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -32,9 +35,15 @@ public class BooksController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Book> createBook(@RequestBody Book book) {
-        Book savedBook = bookService.saveBook(book);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
+    public ResponseEntity<Object> createBook(@RequestBody BookInputDto bookInputDto) {
+        Book newBook = bookService.createBook(bookInputDto);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/" + newBook.getId())
+                .buildAndExpand(newBook)
+                .toUri();
+        return ResponseEntity.created(location).eTag(String.valueOf(HttpStatus.CREATED)).body(newBook);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
