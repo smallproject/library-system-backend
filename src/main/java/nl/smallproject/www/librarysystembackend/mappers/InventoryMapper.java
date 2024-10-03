@@ -57,10 +57,24 @@ public class InventoryMapper {
 
     public Inventory inventoryUpdateDtoToEntity(InventoryUpdateDto inventoryUpdateDto) {
         Inventory inventory = new Inventory();
-        inventory.setBook(inventoryUpdateDto.getBook());
-        inventory.setCount(inventoryUpdateDto.getCount());
-        inventory.setDate(inventoryUpdateDto.getDate());
-        inventory.setAvailable(inventoryUpdateDto.getAvailable());
+        inventory.setLocation(inventoryUpdateDto.getLocation());
+        inventory.setCondition(inventoryUpdateDto.getCondition());
+        inventory.setAcquisitionMethod(inventoryUpdateDto.getAcquisitionMethod());
+        inventory.setSupplier(inventoryUpdateDto.getSupplier());
+        inventory.setLastInventoryCheck(inventoryUpdateDto.getLastInventoryCheck());
+        inventory.setBorrowCount(inventoryUpdateDto.getBorrowCount());
+        inventory.setBorrowedStatus(inventoryUpdateDto.getBorrowedStatus());
+        inventory.setReserveStatus(inventoryUpdateDto.getReserveStatus());
+        inventory.setReplacementCost(inventoryUpdateDto.getReplacementCost());
+        inventory.setEdition(inventoryUpdateDto.getEdition());
+        inventory.setPublisher(inventoryUpdateDto.getPublisher());
+        inventory.setNotes(inventoryUpdateDto.getNotes());
+        inventory.setBarcode(inventoryUpdateDto.getBarcode());
+        inventory.setISBN(inventoryUpdateDto.getISBN());
+        inventory.setRestockDate(inventoryUpdateDto.getRestockDate());
+        inventory.setTimesLost(inventoryUpdateDto.getTimesLost());
+        inventory.setCirculationStatus(inventoryUpdateDto.getCirculationStatus());
+        inventory.setPurchaseDate(inventoryUpdateDto.getPurchaseDate());
         return inventory;
     }
 }
