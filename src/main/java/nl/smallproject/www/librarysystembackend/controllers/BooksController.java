@@ -2,6 +2,7 @@ package nl.smallproject.www.librarysystembackend.controllers;
 
 import nl.smallproject.www.librarysystembackend.dtos.BookInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.BookOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.BookUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.Book;
 import nl.smallproject.www.librarysystembackend.services.BookService;
 import org.springframework.http.HttpStatus;
@@ -47,8 +48,8 @@ public class BooksController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book) {
-        bookService.updateBook(id, book);
+    public ResponseEntity<Object> updateBook(@PathVariable Long id, @RequestBody BookUpdateDto bookUpdateDto) {
+        bookService.updateBook(id, bookUpdateDto);
         return ResponseEntity.noContent().build();
     }
 

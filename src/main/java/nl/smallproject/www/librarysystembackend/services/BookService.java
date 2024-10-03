@@ -2,6 +2,7 @@ package nl.smallproject.www.librarysystembackend.services;
 
 import nl.smallproject.www.librarysystembackend.dtos.BookInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.BookOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.BookUpdateDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.BookMapper;
 import nl.smallproject.www.librarysystembackend.models.Book;
@@ -50,9 +51,10 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public void updateBook(Long id, Book book) {
+    public void updateBook(Long id, BookUpdateDto bookUpdateDto) {
         Book existingBook = bookRepository.getReferenceById(id);
-        BeanUtils.copyProperties(book, existingBook, "id");
+        Book updatedBook = bookMapper.bookUpdateDtoToEntity(bookUpdateDto);
+        BeanUtils.copyProperties(updatedBook, existingBook, "id");
         bookRepository.save(existingBook);
     }
 
