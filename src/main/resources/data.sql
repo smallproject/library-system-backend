@@ -211,3 +211,18 @@ VALUES
     ('user48', 1, 'Couldn’t stand the characters or plot.'),
     ('user49', 5, 'Absolutely fantastic! Couldn’t stop reading.'),
     ('user50', 4, 'Really enjoyed it, but had some minor issues.');
+
+
+-- inventories
+INSERT INTO public.inventories (book, count, date, available)
+VALUES
+    (101, 5, '2023-08-15', 'Yes'),
+    (102, 3, '2023-08-18', 'No'),
+    (103, 7, '2023-09-05', 'Yes'),
+    (104, 2, '2023-07-22', 'Yes'),
+    (105, 0, '2023-10-01', 'No'),
+    (106, 4, '2023-09-30', 'Yes'),
+    (107, 6, '2023-08-25', 'Yes'),
+    (108, 1, '2023-07-15', 'No'),
+    (109, 9, '2023-09-10', 'Yes'),
+    (110, 0, '2023-10-03', 'No')
