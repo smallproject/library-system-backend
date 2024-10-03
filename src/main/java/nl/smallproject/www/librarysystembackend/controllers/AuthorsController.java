@@ -25,7 +25,7 @@ public class AuthorsController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public ResponseEntity<AuthorOutputDto> getAuthorById(@PathVariable long id) {
+    public ResponseEntity<AuthorOutputDto> getAuthorById(@PathVariable Long id) {
         AuthorOutputDto authorOutputDto = authorService.getAuthorById(id);
         return ResponseEntity.ok(authorOutputDto);
     }

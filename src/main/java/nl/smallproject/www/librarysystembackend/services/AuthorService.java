@@ -36,7 +36,7 @@ public class AuthorService {
 
         if (authorOptional.isPresent()) {
             Author author = authorOptional.get();
-            return authorMapper.AuthorEntityToOutputDto(author);
+            return authorMapper.authorEntityToOutputDto(author);
         } else {
             throw new RecordNotFoundException("Author not found with this id: " + id);
         }
