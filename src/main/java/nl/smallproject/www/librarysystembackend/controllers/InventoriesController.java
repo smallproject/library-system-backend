@@ -1,5 +1,6 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
+import nl.smallproject.www.librarysystembackend.dtos.InventoryOutputDto;
 import nl.smallproject.www.librarysystembackend.models.Inventory;
 import nl.smallproject.www.librarysystembackend.services.InventoryService;
 import org.springframework.http.HttpStatus;
@@ -23,10 +24,10 @@ public class InventoriesController {
         return ResponseEntity.ok(inventories);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Inventory> getInventoryById(@PathVariable Long id) {
-        Inventory existingInventory = inventoryService.getInventoryById(id);
-        return ResponseEntity.ok(existingInventory);
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public ResponseEntity<InventoryOutputDto> getInventoryById(@PathVariable Long id) {
+        InventoryOutputDto inventoryOutputDto = inventoryService.getInventoryById(id);
+        return ResponseEntity.ok(inventoryOutputDto);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -35,13 +36,13 @@ public class InventoriesController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedInventory);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public ResponseEntity<Inventory> update(@PathVariable Long id, @RequestBody final Inventory inventory) {
         inventoryService.updateInventory(id, inventory);
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Inventory> deleteInventory(@PathVariable Long id) {
         inventoryService.deleteInventory(id);
         return ResponseEntity.noContent().build();
