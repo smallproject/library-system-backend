@@ -1,5 +1,6 @@
 package nl.smallproject.www.librarysystembackend.mappers;
 
+import nl.smallproject.www.librarysystembackend.dtos.UserReviewInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.UserReviewOutputDto;
 import nl.smallproject.www.librarysystembackend.models.UserReview;
 import org.springframework.stereotype.Component;
@@ -13,5 +14,13 @@ public class UserReviewMapper {
         userReviewOutputDto.setRating(userReview.getRating());
         userReviewOutputDto.setComments(userReview.getComments());
         return userReviewOutputDto;
+    }
+
+    public UserReview userReviewInputDtoToEntity(UserReviewInputDto userReviewInputDto) {
+        UserReview userReview = new UserReview();
+        userReview.setUserId(userReviewInputDto.getUserId());
+        userReview.setRating(userReviewInputDto.getRating());
+        userReview.setComments(userReviewInputDto.getComments());
+        return userReview;
     }
 }
