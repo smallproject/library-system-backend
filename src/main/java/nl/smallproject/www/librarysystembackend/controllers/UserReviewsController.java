@@ -3,6 +3,7 @@ package nl.smallproject.www.librarysystembackend.controllers;
 import jakarta.validation.Valid;
 import nl.smallproject.www.librarysystembackend.dtos.UserReviewInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.UserReviewOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.UserReviewUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.UserReview;
 import nl.smallproject.www.librarysystembackend.services.UserReviewService;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class UserReviewsController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<UserReview> createUserReview(@Valid @RequestBody final UserReviewInputDto userReviewInputDto) {
+    public ResponseEntity<Object> createUserReview(@Valid @RequestBody final UserReviewInputDto userReviewInputDto) {
         UserReview newUserReview = userReviewService.createUserReview(userReviewInputDto);
 
         URI location = ServletUriComponentsBuilder
@@ -48,8 +49,8 @@ public class UserReviewsController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public ResponseEntity<UserReview> update(@PathVariable Long id, @RequestBody UserReview userReview) {
-        userReviewService.updateUserReview(id, userReview);
+    public ResponseEntity<Object> updateUserReview(@PathVariable Long id, @Valid @RequestBody final UserReviewUpdateDto userReviewUpdateDto) {
+        userReviewService.updateUserReview(id, userReviewUpdateDto);
         return ResponseEntity.noContent().build();
     }
 

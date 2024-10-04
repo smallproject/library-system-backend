@@ -2,6 +2,7 @@ package nl.smallproject.www.librarysystembackend.services;
 
 import nl.smallproject.www.librarysystembackend.dtos.UserReviewInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.UserReviewOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.UserReviewUpdateDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.UserReviewMapper;
 import nl.smallproject.www.librarysystembackend.models.Inventory;
@@ -51,9 +52,11 @@ public class UserReviewService {
         return userReviewRepository.save(userReview);
     }
 
-    public void updateUserReview(Long id, UserReview userReview) {
+    public void updateUserReview(Long id, UserReviewUpdateDto userReviewUpdateDto) {
         UserReview existingUserReview = userReviewRepository.getReferenceById(id);
-        BeanUtils.copyProperties(userReview, existingUserReview, "id");
+        UserReview updatedUserReview = userReviewMapper.userReviewUpdateDtoToEntity(userReviewUpdateDto);
+
+        BeanUtils.copyProperties(updatedUserReview, existingUserReview, "id");
         userReviewRepository.save(existingUserReview);
     }
 
