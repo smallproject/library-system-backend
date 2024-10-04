@@ -1,10 +1,9 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
 import jakarta.validation.Valid;
-import nl.smallproject.www.librarysystembackend.dtos.AuthorInputDto;
-import nl.smallproject.www.librarysystembackend.dtos.AuthorOutputDto;
-import nl.smallproject.www.librarysystembackend.dtos.AuthorUpdateDto;
-import nl.smallproject.www.librarysystembackend.models.Author;
+import nl.smallproject.www.librarysystembackend.dtos.Author.AuthorInputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Author.AuthorOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Author.AuthorUpdateDto;
 import nl.smallproject.www.librarysystembackend.services.AuthorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +35,7 @@ public class AuthorsController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> createAuthor(@Valid @RequestBody AuthorInputDto authorInputDto) {
+    public ResponseEntity<Object> createAuthor(@Valid @RequestBody final AuthorInputDto authorInputDto) {
         var newAuthor = authorService.createAuthor(authorInputDto);
 
         URI location = ServletUriComponentsBuilder
@@ -46,11 +45,10 @@ public class AuthorsController {
                 .toUri();
 
         return ResponseEntity.created(location).eTag(String.valueOf(HttpStatus.CREATED)).body(newAuthor);
-//        return ResponseEntity.created(location).body("Author created");
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateAuthor(@PathVariable Long id,@Valid @RequestBody AuthorUpdateDto authorUpdateDto) {
+    public ResponseEntity<Object> updateAuthor(@PathVariable Long id,@Valid @RequestBody final AuthorUpdateDto authorUpdateDto) {
         authorService.updateAuthor(id, authorUpdateDto);
         return ResponseEntity.noContent().build();
     }

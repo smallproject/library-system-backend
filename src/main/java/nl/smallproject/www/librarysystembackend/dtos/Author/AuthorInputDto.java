@@ -1,4 +1,4 @@
-package nl.smallproject.www.librarysystembackend.dtos;
+package nl.smallproject.www.librarysystembackend.dtos.Author;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -7,7 +7,8 @@ import jakarta.validation.constraints.Size;
 
 import java.util.Date;
 
-public class AuthorUpdateDto {
+public class AuthorInputDto {
+
     @NotBlank(message = "{author.firstName.notblank}")
     @Size(min = 3, max = 255, message = "{author.firstName.size}")
     private String firstName;

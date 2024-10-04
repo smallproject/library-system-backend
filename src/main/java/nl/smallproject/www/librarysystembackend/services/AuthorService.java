@@ -1,8 +1,8 @@
 package nl.smallproject.www.librarysystembackend.services;
 
-import nl.smallproject.www.librarysystembackend.dtos.AuthorInputDto;
-import nl.smallproject.www.librarysystembackend.dtos.AuthorOutputDto;
-import nl.smallproject.www.librarysystembackend.dtos.AuthorUpdateDto;
+import nl.smallproject.www.librarysystembackend.dtos.Author.AuthorInputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Author.AuthorOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Author.AuthorUpdateDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.AuthorMapper;
 import nl.smallproject.www.librarysystembackend.models.Author;
