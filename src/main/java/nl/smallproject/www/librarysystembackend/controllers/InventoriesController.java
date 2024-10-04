@@ -1,8 +1,9 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
-import nl.smallproject.www.librarysystembackend.dtos.InventoryInputDto;
-import nl.smallproject.www.librarysystembackend.dtos.InventoryOutputDto;
-import nl.smallproject.www.librarysystembackend.dtos.InventoryUpdateDto;
+import jakarta.validation.Valid;
+import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryInputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.Inventory;
 import nl.smallproject.www.librarysystembackend.services.InventoryService;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class InventoriesController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> createInventory(@RequestBody final InventoryInputDto inventoryInputDto) {
+    public ResponseEntity<Object> createInventory(@Valid @RequestBody final InventoryInputDto inventoryInputDto) {
         Inventory newInventory = inventoryService.createInventory(inventoryInputDto);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -47,7 +48,7 @@ public class InventoriesController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody final InventoryUpdateDto inventoryUpdateDto) {
+    public ResponseEntity<Object> updateInventory(@PathVariable Long id, @Valid @RequestBody final InventoryUpdateDto inventoryUpdateDto) {
         inventoryService.updateInventory(id, inventoryUpdateDto);
         return ResponseEntity.noContent().build();
     }

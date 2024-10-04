@@ -1,8 +1,8 @@
 package nl.smallproject.www.librarysystembackend.mappers;
 
-import nl.smallproject.www.librarysystembackend.dtos.InventoryInputDto;
-import nl.smallproject.www.librarysystembackend.dtos.InventoryOutputDto;
-import nl.smallproject.www.librarysystembackend.dtos.InventoryUpdateDto;
+import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryInputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.Inventory;
 import org.springframework.stereotype.Component;
 
