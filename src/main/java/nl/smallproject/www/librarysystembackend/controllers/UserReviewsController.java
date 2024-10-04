@@ -1,12 +1,16 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
+import jakarta.validation.Valid;
+import nl.smallproject.www.librarysystembackend.dtos.UserReviewInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.UserReviewOutputDto;
 import nl.smallproject.www.librarysystembackend.models.UserReview;
 import nl.smallproject.www.librarysystembackend.services.UserReviewService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -31,9 +35,16 @@ public class UserReviewsController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<UserReview> create(@RequestBody final UserReview userReview) {
-        UserReview savedUserReview = userReviewService.saveUserReview(userReview);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUserReview);
+    public ResponseEntity<UserReview> createUserReview(@Valid @RequestBody final UserReviewInputDto userReviewInputDto) {
+        UserReview newUserReview = userReviewService.createUserReview(userReviewInputDto);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/" + newUserReview.getId())
+                .buildAndExpand(newUserReview)
+                .toUri();
+
+        return ResponseEntity.created(location).eTag(String.valueOf(HttpStatus.CREATED)).body(newUserReview);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)

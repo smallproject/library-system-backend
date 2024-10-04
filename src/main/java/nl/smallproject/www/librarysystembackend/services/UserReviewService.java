@@ -1,5 +1,6 @@
 package nl.smallproject.www.librarysystembackend.services;
 
+import nl.smallproject.www.librarysystembackend.dtos.UserReviewInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.UserReviewOutputDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.UserReviewMapper;
@@ -45,7 +46,8 @@ public class UserReviewService {
         }
     }
 
-    public UserReview saveUserReview(UserReview userReview) {
+    public UserReview createUserReview(UserReviewInputDto userReviewInputDto) {
+        UserReview userReview = userReviewMapper.userReviewInputDtoToEntity(userReviewInputDto);
         return userReviewRepository.save(userReview);
     }
 
