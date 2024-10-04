@@ -1,14 +1,12 @@
 package nl.smallproject.www.librarysystembackend.services;
 
-import nl.smallproject.www.librarysystembackend.dtos.UserReviewInputDto;
-import nl.smallproject.www.librarysystembackend.dtos.UserReviewOutputDto;
-import nl.smallproject.www.librarysystembackend.dtos.UserReviewUpdateDto;
+import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewInputDto;
+import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewUpdateDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.UserReviewMapper;
-import nl.smallproject.www.librarysystembackend.models.Inventory;
 import nl.smallproject.www.librarysystembackend.models.UserReview;
 import nl.smallproject.www.librarysystembackend.repositories.UserReviewRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 

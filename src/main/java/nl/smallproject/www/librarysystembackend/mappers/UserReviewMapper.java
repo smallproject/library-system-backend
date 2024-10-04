@@ -1,8 +1,8 @@
 package nl.smallproject.www.librarysystembackend.mappers;
 
-import nl.smallproject.www.librarysystembackend.dtos.UserReviewInputDto;
-import nl.smallproject.www.librarysystembackend.dtos.UserReviewOutputDto;
-import nl.smallproject.www.librarysystembackend.dtos.UserReviewUpdateDto;
+import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewInputDto;
+import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.UserReview;
 import org.springframework.stereotype.Component;
 

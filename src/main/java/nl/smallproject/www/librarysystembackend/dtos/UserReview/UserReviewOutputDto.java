@@ -1,9 +1,4 @@
-package nl.smallproject.www.librarysystembackend.dtos;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+package nl.smallproject.www.librarysystembackend.dtos.UserReview;
 
 public class UserReviewOutputDto {
     private Long id;

@@ -1,10 +1,10 @@
-package nl.smallproject.www.librarysystembackend.dtos;
+package nl.smallproject.www.librarysystembackend.dtos.UserReview;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
-public class UserReviewUpdateDto {
+public class UserReviewInputDto {
 
     @NotBlank(message = "{userReview.userId.notblank}")
     @Size(min = 3, max = 255, message = "{userReview.userId.size}")

@@ -1,9 +1,9 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
 import jakarta.validation.Valid;
-import nl.smallproject.www.librarysystembackend.dtos.UserReviewInputDto;
-import nl.smallproject.www.librarysystembackend.dtos.UserReviewOutputDto;
-import nl.smallproject.www.librarysystembackend.dtos.UserReviewUpdateDto;
+import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewInputDto;
+import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.UserReview;
 import nl.smallproject.www.librarysystembackend.services.UserReviewService;
 import org.springframework.http.HttpStatus;
