@@ -57,7 +57,21 @@ public class UserReviewMapper {
         UserReview userReview = new UserReview();
         userReview.setUserId(userReviewUpdateDto.getUserId());
         userReview.setRating(userReviewUpdateDto.getRating());
-        userReview.setComments(userReviewUpdateDto.getComments());
+        userReview.setReviewText(userReviewUpdateDto.getReviewText());
+        userReview.setReviewTitle(userReviewUpdateDto.getReviewTitle());
+        userReview.setReviewDate(userReviewUpdateDto.getReviewDate());
+        userReview.setHelpfulCount(userReviewUpdateDto.getHelpfulCount());
+        userReview.setFlagged(userReviewUpdateDto.getFlagged());
+        userReview.setFlaggedReason(userReviewUpdateDto.getFlaggedReason());
+        userReview.setResponseCount(userReviewUpdateDto.getResponseCount());
+        userReview.setUpdatedAt(userReviewUpdateDto.getUpdatedAt());
+        userReview.setUserRecommendation(userReviewUpdateDto.getUserRecommendation());
+        userReview.setReadStatus(userReviewUpdateDto.getReadStatus());
+        userReview.setReadDate(userReviewUpdateDto.getReadDate());
+        userReview.setUserLocation(userReviewUpdateDto.getUserLocation());
+        userReview.setSpoilerFlag(userReviewUpdateDto.getSpoilerFlag());
+        userReview.setResponseFromLibrarian(userReviewUpdateDto.getResponseFromLibrarian());
+        userReview.setAnonymousReview(userReviewUpdateDto.getAnonymousReview());
         return userReview;
     }
 }
