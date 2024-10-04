@@ -1,5 +1,6 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
+import nl.smallproject.www.librarysystembackend.dtos.UserReviewOutputDto;
 import nl.smallproject.www.librarysystembackend.models.UserReview;
 import nl.smallproject.www.librarysystembackend.services.UserReviewService;
 import org.springframework.http.HttpStatus;
@@ -23,10 +24,10 @@ public class UserReviewsController {
         return ResponseEntity.ok(userReviews);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<UserReview> getUserReviewById(@PathVariable Long id) {
-        UserReview existingUserReview = userReviewService.getUserReviewById(id);
-        return  ResponseEntity.ok(existingUserReview);
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public ResponseEntity<UserReviewOutputDto> getUserReviewById(@PathVariable Long id) {
+        UserReviewOutputDto userReviewOutputDto = userReviewService.getUserReviewById(id);
+        return  ResponseEntity.ok(userReviewOutputDto);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -35,7 +36,7 @@ public class UserReviewsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUserReview);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public ResponseEntity<UserReview> update(@PathVariable Long id, @RequestBody UserReview userReview) {
         userReviewService.updateUserReview(id, userReview);
         return ResponseEntity.noContent().build();
