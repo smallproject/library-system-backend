@@ -1,11 +1,16 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
+import nl.smallproject.www.librarysystembackend.dtos.InventoryInputDto;
+import nl.smallproject.www.librarysystembackend.dtos.InventoryOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.InventoryUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.Inventory;
 import nl.smallproject.www.librarysystembackend.services.InventoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -18,31 +23,37 @@ public class InventoriesController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Inventory>> getAllInventories() {
-        List<Inventory> inventories = inventoryService.getAllInventories();
-        return ResponseEntity.ok(inventories);
+    public ResponseEntity<List<InventoryOutputDto>> getAllInventories() {
+        List<InventoryOutputDto> inventoryOutputDtos = inventoryService.getAllInventories();
+        return ResponseEntity.ok(inventoryOutputDtos);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Inventory> getInventoryById(@PathVariable Long id) {
-        Inventory existingInventory = inventoryService.getInventoryById(id);
-        return ResponseEntity.ok(existingInventory);
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public ResponseEntity<InventoryOutputDto> getInventoryById(@PathVariable Long id) {
+        InventoryOutputDto inventoryOutputDto = inventoryService.getInventoryById(id);
+        return ResponseEntity.ok(inventoryOutputDto);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Inventory> createInventory(@RequestBody final Inventory inventory) {
-        Inventory savedInventory = inventoryService.saveInventory(inventory);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedInventory);
+    public ResponseEntity<Object> createInventory(@RequestBody final InventoryInputDto inventoryInputDto) {
+        Inventory newInventory = inventoryService.createInventory(inventoryInputDto);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/" + newInventory.getId())
+                .buildAndExpand(newInventory)
+                .toUri();
+
+        return ResponseEntity.created(location).eTag(String.valueOf(HttpStatus.CREATED)).body(newInventory);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Inventory> update(@PathVariable Long id, @RequestBody final Inventory inventory) {
-        inventoryService.updateInventory(id, inventory);
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody final InventoryUpdateDto inventoryUpdateDto) {
+        inventoryService.updateInventory(id, inventoryUpdateDto);
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Inventory> deleteInventory(@PathVariable Long id) {
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> deleteInventory(@PathVariable Long id) {
         inventoryService.deleteInventory(id);
         return ResponseEntity.noContent().build();
     }

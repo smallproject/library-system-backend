@@ -1,68 +1,49 @@
-package nl.smallproject.www.librarysystembackend.models;
+package nl.smallproject.www.librarysystembackend.dtos;
 
-import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.util.Date;
 
-@Entity(name = "inventories")
-public class Inventory {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class InventoryOutputDto {
     private Long id;
 
-    @Column(name = "location")
     private String location;
 
-    @Column(name = "condition")
     private String condition;
 
-    @Column(name = "acquisitionmethod")
     private String acquisitionMethod;
 
-    @Column(name = "supplier")
     private String supplier;
 
-    @Column(name = "lastinventorycheck")
     private Date lastInventoryCheck;
 
-    @Column(name = "borrowcount")
     private Integer borrowCount;
 
-    @Column(name = "borrowedstatus")
     private String borrowedStatus;
 
-    @Column(name = "reservestatus")
     private String reserveStatus;
 
-    @Column(name = "replacementcost")
     private Double replacementCost;
 
-    @Column(name = "edition")
     private String edition;
 
-    @Column(name = "publisher")
     private String publisher;
 
-    @Column(name = "notes")
     private String notes;
 
-    @Column(name = "barcode")
     private String barcode;
 
-    @Column(name = "isbn")
     private String ISBN;
 
-    @Column(name = "restockdate")
     private Date restockDate;
 
-    @Column(name = "timeslost")
     private Integer timesLost;
 
-    @Column(name = "circulationstatus")
     private String circulationStatus;
 
-    @Column(name = "purchasedate")
     private Date purchaseDate;
 
     public Long getId() {

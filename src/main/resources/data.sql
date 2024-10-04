@@ -211,3 +211,30 @@ VALUES
     ('user48', 1, 'Couldn’t stand the characters or plot.'),
     ('user49', 5, 'Absolutely fantastic! Couldn’t stop reading.'),
     ('user50', 4, 'Really enjoyed it, but had some minor issues.');
+
+
+-- inventories
+INSERT INTO public.inventories (
+    location, condition, acquisitionmethod, supplier, lastinventorycheck, borrowcount, borrowedstatus, reservestatus, replacementcost, edition, publisher, notes, barcode, isbn, restockdate, timeslost, circulationstatus, purchasedate)
+VALUES
+      ('Shelf A1', 'Good', 'Purchased', 'BookWorld', '2024-01-12', 5, 'Available', 'Not Reserved', 25.99, '1st Edition', 'Penguin Books', 'New arrival', '9781234567890', '978-0-12-345678-9', '2024-01-05', 0, 'In Circulation', '2024-01-01'),
+      ('Shelf B2', 'Fair', 'Donated', 'Anonymous', '2023-11-10', 2, 'Borrowed', 'Reserved', 18.50, '2nd Edition', 'HarperCollins', 'Slight wear on cover', '9789876543210', '978-0-23-456789-0', '2023-12-20', 1, 'Out of Circulation', '2023-09-15'),
+      ('Shelf C3', 'Good', 'Purchased', 'City Library', '2023-10-08', 7, 'Available', 'Not Reserved', 12.99, '3rd Edition', 'Oxford Press', 'Popular book in demand', '9782345678901', '978-0-34-567890-1', '2023-10-10', 0, 'In Circulation', '2023-05-10'),
+      ('Shelf D4', 'New', 'Purchased', 'GlobalBooks', '2023-12-01', 3, 'Borrowed', 'Not Reserved', 35.50, '1st Edition', 'Scholastic', 'High-quality hardcover', '9783456789012', '978-0-45-678901-2', '2024-02-01', 0, 'In Circulation', '2024-01-15'),
+      ('Shelf E5', 'Poor', 'Donated', 'Local Charity', '2023-08-30', 1, 'Borrowed', 'Reserved', 8.99, '5th Edition', 'Simon & Schuster', 'Damaged spine, to be repaired', '9784567890123', '978-0-56-789012-3', '2024-01-15', 2, 'Out of Circulation', '2023-02-28'),
+      ('Shelf F6', 'Excellent', 'Purchased', 'BookShop Ltd.', '2024-03-15', 10, 'Available', 'Not Reserved', 45.99, '2nd Edition', 'Random House', 'Recently added bestseller', '9785678901234', '978-0-67-890123-4', '2024-04-10', 0, 'In Circulation', '2024-03-01'),
+      ('Shelf G7', 'Good', 'Purchased', 'National Library', '2023-11-12', 6, 'Borrowed', 'Reserved', 29.75, '4th Edition', 'Knopf', 'Good condition, frequently borrowed', '9786789012345', '978-0-78-901234-5', '2024-05-05', 1, 'In Circulation', '2023-11-20'),
+      ('Shelf H8', 'Fair', 'Purchased', 'BooksDirect', '2023-10-25', 8, 'Available', 'Not Reserved', 15.30, '3rd Edition', 'Macmillan', 'Some minor wear', '9787890123456', '978-0-89-012345-6', '2024-06-01', 0, 'In Circulation', '2024-01-30'),
+      ('Shelf I9', 'Good', 'Purchased', 'City Library', '2023-09-19', 9, 'Borrowed', 'Reserved', 19.99, '5th Edition', 'Hachette', 'Popular with students', '9788901234567', '978-0-90-123456-7', '2024-02-15', 0, 'In Circulation', '2023-07-12'),
+      ('Shelf J1', 'Good', 'Purchased', 'GlobalBooks', '2024-01-12', 12, 'Available', 'Not Reserved', 24.99, '1st Edition', 'HarperCollins', 'Well-received fiction', '9789012345678', '978-1-01-234567-8', '2024-03-01', 0, 'In Circulation', '2023-12-11'),
+      ('Shelf A2', 'Excellent', 'Purchased', 'BookWorld', '2024-02-10', 7, 'Borrowed', 'Not Reserved', 22.50, '2nd Edition', 'Penguin Books', 'Lightly used', '9782345671234', '978-1-02-345678-9', '2024-03-15', 0, 'In Circulation', '2024-01-20'),
+      ('Shelf B3', 'Good', 'Purchased', 'BooksDirect', '2023-11-01', 11, 'Available', 'Reserved', 33.00, '1st Edition', 'Simon & Schuster', 'Recently borrowed', '9783456782345', '978-1-03-456789-0', '2024-02-08', 0, 'In Circulation', '2023-10-21'),
+      ('Shelf C4', 'Fair', 'Donated', 'Anonymous', '2023-07-05', 4, 'Available', 'Not Reserved', 12.75, '2nd Edition', 'Macmillan', 'Cover slightly damaged', '9784567893456', '978-1-04-567890-1', '2023-12-10', 1, 'Out of Circulation', '2023-04-30'),
+      ('Shelf D5', 'Good', 'Purchased', 'National Library', '2023-09-25', 15, 'Borrowed', 'Reserved', 25.25, '3rd Edition', 'Oxford Press', 'Well-read', '9785678904567', '978-1-05-678901-2', '2024-04-05', 0, 'In Circulation', '2023-06-17'),
+      ('Shelf E6', 'Poor', 'Donated', 'Local Charity', '2023-08-02', 3, 'Available', 'Not Reserved', 9.50, '1st Edition', 'Scholastic', 'Old but intact', '9786789015678', '978-1-06-789012-3', '2024-01-28', 2, 'Out of Circulation', '2023-03-11'),
+      ('Shelf F7', 'Good', 'Purchased', 'GlobalBooks', '2023-10-19', 5, 'Borrowed', 'Not Reserved', 40.75, '2nd Edition', 'Random House', 'Great condition', '9787890126789', '978-1-07-890123-4', '2024-03-10', 0, 'In Circulation', '2024-01-09'),
+      ('Shelf G8', 'Excellent', 'Purchased', 'BookShop Ltd.', '2024-02-02', 18, 'Available', 'Reserved', 60.00, '5th Edition', 'Knopf', 'Heavily in demand', '9788901237890', '978-1-08-901234-5', '2024-05-01', 0, 'In Circulation', '2024-02-20'),
+      ('Shelf H9', 'Good', 'Purchased', 'City Library', '2023-09-18', 14, 'Available', 'Not Reserved', 16.20, '3rd Edition', 'Macmillan', 'Good condition', '9789012348901', '978-1-09-012345-6', '2024-03-01', 0, 'In Circulation', '2023-12-02'),
+      ('Shelf I1', 'Fair', 'Donated', 'Local Charity', '2023-08-23', 1, 'Borrowed', 'Not Reserved', 7.80, '4th Edition', 'Hachette', 'Worn but readable', '9780123459012', '978-1-10-123456-7', '2023-11-10', 1, 'Out of Circulation', '2023-07-28'),
+      ('Shelf J2', 'Good', 'Purchased', 'BooksDirect', '2024-01-15', 9, 'Available', 'Reserved', 20.99, '1st Edition', 'HarperCollins', 'Good as new', '9781234560123', '978-1-11-234567-8', '2024-04-12', 0, 'In Circulation', '2023-12-30');
+
