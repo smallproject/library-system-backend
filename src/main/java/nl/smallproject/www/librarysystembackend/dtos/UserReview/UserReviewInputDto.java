@@ -33,6 +33,8 @@ public class UserReviewInputDto {
     @PositiveOrZero(message = "{userReview.helpfulCount.positiveornotzero}")
     private Integer helpfulCount;
 
+    //maybe nullable? or false default
+    @NotNull(message = "{userReview.flagged.notnull}")
     private Boolean flagged;
 
     @NotBlank(message = "{userReview.flaggedReason.notblank}")
@@ -125,11 +127,11 @@ public class UserReviewInputDto {
         this.helpfulCount = helpfulCount;
     }
 
-    public Boolean getFlagged() {
+    public @NotNull(message = "{userReview.flagged.notnull}") Boolean getFlagged() {
         return flagged;
     }
 
-    public void setFlagged(Boolean flagged) {
+    public void setFlagged(@NotNull(message = "{userReview.flagged.notnull}") Boolean flagged) {
         this.flagged = flagged;
     }
 
