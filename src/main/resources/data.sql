@@ -159,7 +159,7 @@ VALUES
 
 
 -- user review
-INSERT INTO public.userreviews (userid, bookid, rating, reviewtext, reviewtitle, reviewdate, helpfulcount, flagged, flaggedreason, responsecount, updateat, userrecommendation, readstatus, readdate, userlocation, spoilerflag, responsefromlibrarian, anonymousreview)
+INSERT INTO public.userreviews (userid, bookid, rating, reviewtext, reviewtitle, reviewdate, helpfulcount, flagged, flaggedreason, responsecount, updatedat, userrecommendation, readstatus, readdate, userlocation, spoilerflag, responsefromlibrarian, anonymousreview)
 VALUES
     ('user1', 101, 5, 'Great book with insightful ideas.', 'Fantastic Read!', '2023-08-01', 12, false, false, 3, '2023-09-01', true, 'Finished', '2023-07-30', 'New York, USA', false, NULL, false),
     ('user2', 102, 4, 'Very interesting plot but a bit slow in the middle.', 'Interesting Story', '2023-07-15', 5, false, NULL, 1, '2023-08-15', true, 'Reading', NULL, 'Los Angeles, USA', false, NULL, false),

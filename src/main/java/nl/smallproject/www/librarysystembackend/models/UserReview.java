@@ -40,7 +40,7 @@ public class UserReview {
     @Column(name = "responsecount")
     private Integer responseCount;
 
-    @Column(name = "updateat")
+    @Column(name = "updatedat")
     private Date updatedAt;
 
     @Column(name = "userrecommendation")
