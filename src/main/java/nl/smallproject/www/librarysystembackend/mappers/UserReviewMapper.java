@@ -13,7 +13,21 @@ public class UserReviewMapper {
         userReviewOutputDto.setId(userReview.getId());
         userReviewOutputDto.setUserId(userReview.getUserId());
         userReviewOutputDto.setRating(userReview.getRating());
-        userReviewOutputDto.setComments(userReview.getComments());
+        userReviewOutputDto.setReviewText(userReview.getReviewText());
+        userReviewOutputDto.setReviewTitle(userReview.getReviewTitle());
+        userReviewOutputDto.setReviewDate(userReview.getReviewDate());
+        userReviewOutputDto.setHelpfulCount(userReview.getHelpfulCount());
+        userReviewOutputDto.setFlagged(userReview.getFlagged());
+        userReviewOutputDto.setFlaggedReason(userReview.getFlaggedReason());
+        userReviewOutputDto.setResponseCount(userReview.getResponseCount());
+        userReviewOutputDto.setUpdatedAt(userReview.getUpdatedAt());
+        userReviewOutputDto.setUserRecommendation(userReview.getUserRecommendation());
+        userReviewOutputDto.setReadStatus(userReview.getReadStatus());
+        userReviewOutputDto.setReadDate(userReview.getReadDate());
+        userReviewOutputDto.setUserLocation(userReview.getUserLocation());
+        userReviewOutputDto.setSpoilerFlag(userReview.getSpoilerFlag());
+        userReviewOutputDto.setResponseFromLibrarian(userReview.getResponseFromLibrarian());
+        userReviewOutputDto.setAnonymousReview(userReview.getAnonymousReview());
         return userReviewOutputDto;
     }
 
