@@ -19,9 +19,9 @@ public class UserReviewsController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<UserReview>> getAllUserReviews() {
-        List<UserReview> userReviews = userReviewService.getAllUserReviews();
-        return ResponseEntity.ok(userReviews);
+    public ResponseEntity<List<UserReviewOutputDto>> getAllUserReviews() {
+        List<UserReviewOutputDto> userReviewOutputDtos = userReviewService.getAllUserReviews();
+        return ResponseEntity.ok(userReviewOutputDtos);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)

@@ -10,6 +10,7 @@ import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +24,14 @@ public class UserReviewService {
         this.userReviewMapper = userReviewMapper;
     }
 
-    public List<UserReview> getAllUserReviews() {
-        return userReviewRepository.findAll();
+    public List<UserReviewOutputDto> getAllUserReviews() {
+        List<UserReview> userReviews = userReviewRepository.findAll();
+        List<UserReviewOutputDto> userReviewOutputDtos = new ArrayList<>();
+
+        for (var userReview: userReviews) {
+            userReviewOutputDtos.add(userReviewMapper.userReviewEntityToOutputDto(userReview));
+        }
+        return  userReviewOutputDtos;
     }
 
     public UserReviewOutputDto getUserReviewById(Long id) {
