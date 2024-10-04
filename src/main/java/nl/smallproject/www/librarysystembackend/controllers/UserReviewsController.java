@@ -55,7 +55,7 @@ public class UserReviewsController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<UserReview> delete(@PathVariable Long id) {
+    public ResponseEntity<Object> delete(@PathVariable Long id) {
         userReviewService.deleteUserReview(id);
         return ResponseEntity.noContent().build();
     }
