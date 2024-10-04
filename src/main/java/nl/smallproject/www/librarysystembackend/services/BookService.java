@@ -1,8 +1,8 @@
 package nl.smallproject.www.librarysystembackend.services;
 
-import nl.smallproject.www.librarysystembackend.dtos.BookInputDto;
-import nl.smallproject.www.librarysystembackend.dtos.BookOutputDto;
-import nl.smallproject.www.librarysystembackend.dtos.BookUpdateDto;
+import nl.smallproject.www.librarysystembackend.dtos.Book.BookInputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Book.BookOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Book.BookUpdateDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.BookMapper;
 import nl.smallproject.www.librarysystembackend.models.Book;

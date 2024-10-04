@@ -1,8 +1,9 @@
 package nl.smallproject.www.librarysystembackend.controllers;
 
-import nl.smallproject.www.librarysystembackend.dtos.BookInputDto;
-import nl.smallproject.www.librarysystembackend.dtos.BookOutputDto;
-import nl.smallproject.www.librarysystembackend.dtos.BookUpdateDto;
+import jakarta.validation.Valid;
+import nl.smallproject.www.librarysystembackend.dtos.Book.BookInputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Book.BookOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Book.BookUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.Book;
 import nl.smallproject.www.librarysystembackend.services.BookService;
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,7 @@ public class BooksController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> createBook(@RequestBody BookInputDto bookInputDto) {
+    public ResponseEntity<Object> createBook(@Valid @RequestBody final BookInputDto bookInputDto) {
         Book newBook = bookService.createBook(bookInputDto);
 
         URI location = ServletUriComponentsBuilder
@@ -48,7 +49,7 @@ public class BooksController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateBook(@PathVariable Long id, @RequestBody BookUpdateDto bookUpdateDto) {
+    public ResponseEntity<Object> updateBook(@PathVariable Long id, @Valid @RequestBody final BookUpdateDto bookUpdateDto) {
         bookService.updateBook(id, bookUpdateDto);
         return ResponseEntity.noContent().build();
     }
