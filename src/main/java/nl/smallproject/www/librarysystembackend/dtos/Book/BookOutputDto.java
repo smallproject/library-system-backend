@@ -1,9 +1,4 @@
-package nl.smallproject.www.librarysystembackend.dtos;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+package nl.smallproject.www.librarysystembackend.dtos.Book;
 
 import java.util.Date;
 

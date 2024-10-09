@@ -1,6 +1,4 @@
-package nl.smallproject.www.librarysystembackend.dtos;
-
-import jakarta.persistence.Column;
+package nl.smallproject.www.librarysystembackend.dtos.Author;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package nl.smallproject.www.librarysystembackend.dtos;
+package nl.smallproject.www.librarysystembackend.dtos.Inventory;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

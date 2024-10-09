@@ -1,4 +1,4 @@
-package nl.smallproject.www.librarysystembackend.dtos;
+package nl.smallproject.www.librarysystembackend.dtos.Book;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;

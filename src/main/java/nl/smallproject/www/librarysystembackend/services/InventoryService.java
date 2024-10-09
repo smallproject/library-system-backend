@@ -1,8 +1,8 @@
 package nl.smallproject.www.librarysystembackend.services;
 
-import nl.smallproject.www.librarysystembackend.dtos.InventoryInputDto;
-import nl.smallproject.www.librarysystembackend.dtos.InventoryOutputDto;
-import nl.smallproject.www.librarysystembackend.dtos.InventoryUpdateDto;
+import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryInputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryUpdateDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.InventoryMapper;
 import nl.smallproject.www.librarysystembackend.models.Inventory;

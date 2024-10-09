@@ -1,67 +1,49 @@
-package nl.smallproject.www.librarysystembackend.models;
+package nl.smallproject.www.librarysystembackend.dtos.UserReview;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.util.Date;
 
-@Entity(name = "userreviews")
-public class UserReview {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserReviewOutputDto {
     private Long id;
 
-    @Column(name = "userid")
     private String userId;
 
-    @Column(name = "bookid")
     private Long bookId;
 
-    @Column(name = "rating")
     private Integer rating;
 
-    @Column(name = "reviewtext")
     private String reviewText;
 
-    @Column(name = "reviewtitle")
     private String reviewTitle;
 
-    @Column(name = "reviewdate")
     private Date reviewDate;
 
-    @Column(name = "helpfulcount")
     private Integer helpfulCount;
 
-    @Column(name = "flagged")
     private Boolean flagged;
 
-    @Column(name = "flaggedreason")
     private String flaggedReason;
 
-    @Column(name = "responsecount")
     private Integer responseCount;
 
-    @Column(name = "updatedat")
     private Date updatedAt;
 
-    @Column(name = "userrecommendation")
     private Boolean userRecommendation;
 
-    @Column(name = "readstatus")
     private String readStatus;
 
-    @Column(name = "readdate")
     private Date readDate;
 
-    @Column(name = "userlocation")
     private String userLocation;
 
-    @Column(name = "spoilerflag")
     private Boolean spoilerFlag;
 
-    @Column(name = "responsefromlibrarian")
     private String responseFromLibrarian;
 
-    @Column(name = "anonymousreview")
     private Boolean anonymousReview;
 
     public Long getId() {
