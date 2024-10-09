@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/userreviews")
+@CrossOrigin
 public class UserReviewsController {
     private final UserReviewService userReviewService;
 
