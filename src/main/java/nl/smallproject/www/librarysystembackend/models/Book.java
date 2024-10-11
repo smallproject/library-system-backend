@@ -17,10 +17,6 @@ public class Book {
     @Column(name = "title")
     private String title;
 
-//    this needs relation
-//    private List<Author> authors;
-
-
     @Column(name = "publicationdate")
     private Date publicationDate;
 
@@ -50,6 +46,18 @@ public class Book {
 
     @Column(name = "status")
     private String status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
+    private Author author;
+
+    @Column(name = "userreviews")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<UserReview> userReviews;
+
+    @Column(name = "inventories")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Inventory> inventories;
 
     public Long getId() {
         return id;
@@ -153,5 +161,29 @@ public class Book {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public List<UserReview> getUserReviews() {
+        return userReviews;
+    }
+
+    public void setUserReviews(List<UserReview> userReviews) {
+        this.userReviews = userReviews;
+    }
+
+    public List<Inventory> getInventories() {
+        return inventories;
+    }
+
+    public void setInventories(List<Inventory> inventories) {
+        this.inventories = inventories;
     }
 }

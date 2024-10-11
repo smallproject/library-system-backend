@@ -60,4 +60,16 @@ public class BooksController {
         bookService.deleteBook(id);
         return ResponseEntity.noContent().build();
     }
+
+    @RequestMapping(value = "{bookId}/userreview/{userReviewId}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> assignUserReviewToBook(@PathVariable final Long bookId, @PathVariable final Long userReviewId) {
+        bookService.assignUserReviewToBook(bookId,userReviewId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "{bookId}/inventory/{inventoryId}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> assignInventoryToBook(@PathVariable final Long bookId, @PathVariable final Long inventoryId) {
+        bookService.assignInventoryToBook(bookId, inventoryId);
+        return ResponseEntity.noContent().build();
+    }
 }

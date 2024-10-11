@@ -3,11 +3,21 @@ package nl.smallproject.www.librarysystembackend.mappers;
 import nl.smallproject.www.librarysystembackend.dtos.Author.AuthorInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Author.AuthorOutputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Author.AuthorUpdateDto;
+import nl.smallproject.www.librarysystembackend.dtos.Book.BookOutputDto;
 import nl.smallproject.www.librarysystembackend.models.Author;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class AuthorMapper {
+
+    private final BookMapper bookMapper;
+
+    public AuthorMapper(BookMapper bookMapper) {
+        this.bookMapper = bookMapper;
+    }
 
     public AuthorOutputDto authorEntityToOutputDto(Author author) {
         AuthorOutputDto authorOutputDto = new AuthorOutputDto();
@@ -24,6 +34,15 @@ public class AuthorMapper {
         authorOutputDto.setAwards(author.getAwards());
         authorOutputDto.setActiveYears(author.getActiveYears());
         authorOutputDto.setProfilePictureUrl(author.getProfilePictureUrl());
+
+        if (author.getBooks() != null) {
+            List<BookOutputDto> bookOutputDtos = new ArrayList<>();
+            for (var book : author.getBooks()) {
+                bookOutputDtos.add(bookMapper.bookEntityToOutputDto(book));
+            }
+            authorOutputDto.setBookOutputDtos(bookOutputDtos);
+        }
+
         return authorOutputDto;
     }
 
