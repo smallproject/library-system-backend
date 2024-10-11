@@ -3,6 +3,7 @@ package nl.smallproject.www.librarysystembackend.mappers;
 import nl.smallproject.www.librarysystembackend.dtos.Book.BookInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Book.BookOutputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Book.BookUpdateDto;
+import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryOutputDto;
 import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewOutputDto;
 import nl.smallproject.www.librarysystembackend.models.Book;
 import org.springframework.stereotype.Component;
@@ -13,9 +14,11 @@ import java.util.List;
 @Component
 public class BookMapper {
     private final UserReviewMapper userReviewMapper;
+    private final InventoryMapper inventoryMapper;
 
-    public BookMapper(UserReviewMapper userReviewMapper) {
+    public BookMapper(UserReviewMapper userReviewMapper, InventoryMapper inventoryMapper) {
         this.userReviewMapper = userReviewMapper;
+        this.inventoryMapper = inventoryMapper;
     }
 
     public BookOutputDto bookEntityToOutputDto(Book book) {
@@ -40,6 +43,14 @@ public class BookMapper {
                 userReviewOutputDtos.add(userReviewMapper.userReviewEntityToOutputDto(userReview));
             }
             bookOutputDto.setUserReviewOutputDtos(userReviewOutputDtos);
+        }
+
+        if (book.getInventories() != null) {
+            List<InventoryOutputDto> inventoryOutputDtos = new ArrayList<>();
+            for (var inventory : book.getInventories()) {
+                inventoryOutputDtos.add(inventoryMapper.inventoryEntityToOutputDto(inventory));
+            }
+            bookOutputDto.setInventoryOutputDtos(inventoryOutputDtos);
         }
         return bookOutputDto;
     }
