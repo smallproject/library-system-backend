@@ -2,12 +2,13 @@ package nl.smallproject.www.librarysystembackend.services;
 
 import nl.smallproject.www.librarysystembackend.dtos.User.UserInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.User.UserOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.User.UserUpdateDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.UserMapper;
 import nl.smallproject.www.librarysystembackend.models.User;
 import nl.smallproject.www.librarysystembackend.repositories.UserRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,5 +49,12 @@ public class UserService {
     public User createUser(UserInputDto userInputDto) {
         User user = userMapper.userInputDtoToEntity(userInputDto);
         return userRepository.save(user);
+    }
+
+    public void updateUser(Long id, UserUpdateDto userUpdateDto) {
+        User existingUser = userRepository.getReferenceById(id);
+        User updatedUser = userMapper.userUpdateDtoToEntity(userUpdateDto);
+        BeanUtils.copyProperties(updatedUser, existingUser, "id");
+        userRepository.save(existingUser);
     }
 }
