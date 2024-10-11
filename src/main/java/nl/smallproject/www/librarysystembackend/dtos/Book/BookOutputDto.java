@@ -1,6 +1,9 @@
 package nl.smallproject.www.librarysystembackend.dtos.Book;
 
+import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewOutputDto;
+
 import java.util.Date;
+import java.util.List;
 
 public class BookOutputDto {
     private Long id;
@@ -28,6 +31,8 @@ public class BookOutputDto {
     private Date dateAdded;
 
     private String status;
+
+    private List<UserReviewOutputDto> userReviewOutputDtos;
 
     public Long getId() {
         return id;
@@ -131,5 +136,13 @@ public class BookOutputDto {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<UserReviewOutputDto> getUserReviewOutputDtos() {
+        return userReviewOutputDtos;
+    }
+
+    public void setUserReviewOutputDtos(List<UserReviewOutputDto> userReviewOutputDtos) {
+        this.userReviewOutputDtos = userReviewOutputDtos;
     }
 }
