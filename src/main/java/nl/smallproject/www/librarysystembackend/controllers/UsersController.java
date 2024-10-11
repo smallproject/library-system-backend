@@ -3,6 +3,7 @@ package nl.smallproject.www.librarysystembackend.controllers;
 import jakarta.validation.Valid;
 import nl.smallproject.www.librarysystembackend.dtos.User.UserInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.User.UserOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.User.UserUpdateDto;
 import nl.smallproject.www.librarysystembackend.services.UserService;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
@@ -45,5 +46,11 @@ public class UsersController {
                 .toUri();
 
         return  ResponseEntity.created(location).eTag(String.valueOf(HttpStatus.CREATED)).body(newUser);
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> updateUser(@PathVariable final Long id,@Valid @RequestBody final UserUpdateDto userUpdateDto) {
+        userService.updateUser(id, userUpdateDto);
+        return ResponseEntity.noContent().build();
     }
 }
