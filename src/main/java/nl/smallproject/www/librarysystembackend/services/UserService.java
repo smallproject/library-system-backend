@@ -7,7 +7,10 @@ import nl.smallproject.www.librarysystembackend.mappers.UserMapper;
 import nl.smallproject.www.librarysystembackend.models.User;
 import nl.smallproject.www.librarysystembackend.repositories.UserRepository;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.stylesheets.LinkStyle;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,10 +22,16 @@ public class UserService {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
     }
-//
-//    public User createUser(UserInputDto userInputDto) {
-//
-//    }
+
+    public List<UserOutputDto> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        List<UserOutputDto> userOutputDtos = new ArrayList<>();
+
+        for (User user : users) {
+            userOutputDtos.add(userMapper.userEntityToOutputDto(user));
+        }
+        return  userOutputDtos;
+    }
 
     public UserOutputDto getUserById(Long id) {
         Optional<User> userOptional = Optional.ofNullable(userRepository.findById(id)
@@ -35,4 +44,8 @@ public class UserService {
             throw new RecordNotFoundException("User not found with this id: " +id);
         }
     }
+//
+//    public User createUser(UserInputDto userInputDto) {
+//
+//    }
 }
