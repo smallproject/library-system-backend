@@ -2,6 +2,7 @@ package nl.smallproject.www.librarysystembackend.mappers;
 
 import nl.smallproject.www.librarysystembackend.dtos.User.UserInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.User.UserOutputDto;
+import nl.smallproject.www.librarysystembackend.dtos.User.UserUpdateDto;
 import nl.smallproject.www.librarysystembackend.models.User;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +27,16 @@ public class UserMapper {
         user.setPasswordHash(userInputDto.getPasswordHash());
         user.setCreatedAt(userInputDto.getCreatedAt());
         user.setUpdatedAt(userInputDto.getUpdatedAt());
+        return user;
+    }
+
+    public User userUpdateDtoToEntity(UserUpdateDto userUpdateDto) {
+        User user = new User();
+        user.setUsername(userUpdateDto.getUsername());
+        user.setEmail(userUpdateDto.getEmail());
+        user.setPasswordHash(userUpdateDto.getPasswordHash());
+        user.setCreatedAt(userUpdateDto.getCreatedAt());
+        user.setUpdatedAt(userUpdateDto.getUpdatedAt());
         return user;
     }
 }
