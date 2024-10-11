@@ -64,6 +64,10 @@ public class UserReview {
     @Column(name = "anonymousreview")
     private Boolean anonymousReview;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id")
+    private Book book;
+
     public Long getId() {
         return id;
     }
@@ -214,5 +218,13 @@ public class UserReview {
 
     public void setAnonymousReview(Boolean anonymousReview) {
         this.anonymousReview = anonymousReview;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

@@ -3,6 +3,7 @@ package nl.smallproject.www.librarysystembackend.models;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "books")
 public class Book {
@@ -49,6 +50,10 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
+
+    @Column(name = "userreviews")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<UserReview> userReviews;
 
     public Long getId() {
         return id;
@@ -160,5 +165,13 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public List<UserReview> getUserReviews() {
+        return userReviews;
+    }
+
+    public void setUserReviews(List<UserReview> userReviews) {
+        this.userReviews = userReviews;
     }
 }
