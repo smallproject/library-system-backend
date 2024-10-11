@@ -1,6 +1,9 @@
 package nl.smallproject.www.librarysystembackend.dtos.Author;
 
+import nl.smallproject.www.librarysystembackend.dtos.Book.BookOutputDto;
+
 import java.util.Date;
+import java.util.List;
 
 public class AuthorOutputDto {
     private Long id;
@@ -28,6 +31,8 @@ public class AuthorOutputDto {
     private String activeYears;
 
     private String profilePictureUrl;
+
+    private List<BookOutputDto> bookOutputDtos;
 
     public Long getId() {
         return id;
@@ -131,5 +136,13 @@ public class AuthorOutputDto {
 
     public void setProfilePictureUrl(String profilePictureUrl) {
         this.profilePictureUrl = profilePictureUrl;
+    }
+
+    public List<BookOutputDto> getBookOutputDtos() {
+        return bookOutputDtos;
+    }
+
+    public void setBookOutputDtos(List<BookOutputDto> bookOutputDtos) {
+        this.bookOutputDtos = bookOutputDtos;
     }
 }
