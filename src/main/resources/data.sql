@@ -219,3 +219,18 @@ VALUES
       ('Shelf I1', 'Fair', 'Donated', 'Local Charity', '2023-08-23', 1, 'Borrowed', 'Not Reserved', 7.80, '4th Edition', 'Hachette', 'Worn but readable', '9780123459012', '978-1-10-123456-7', '2023-11-10', 1, 'Out of Circulation', '2023-07-28'),
       ('Shelf J2', 'Good', 'Purchased', 'BooksDirect', '2024-01-15', 9, 'Available', 'Reserved', 20.99, '1st Edition', 'HarperCollins', 'Good as new', '9781234560123', '978-1-11-234567-8', '2024-04-12', 0, 'In Circulation', '2023-12-30');
 
+-- users
+INSERT INTO public.users (username, email, passwordhash, createdat, updatedat)
+VALUES
+('john_doe', 'john@example.com', 'hashed_password', '2024-10-01', '2024-10-01'),
+('jane_smith', 'jane@example.com', 'hashed_password2', '2024-10-02', '2024-10-02'),
+('bob_jones', 'bob@example.com', 'hashed_password3', '2024-10-03', '2024-10-03'),
+('alice_walker', 'alice@example.com', 'hashed_password4', '2024-10-04', '2024-10-04'),
+('mike_brown', 'mike@example.com', 'hashed_password5', '2024-10-05', '2024-10-05'),
+('susan_clark', 'susan@example.com', 'hashed_password6', '2024-10-06', '2024-10-06'),
+('peter_parker', 'peter@example.com', 'hashed_password7', '2024-10-07', '2024-10-07'),
+('tony_stark', 'tony@example.com', 'hashed_password8', '2024-10-08', '2024-10-08'),
+('bruce_wayne', 'bruce@example.com', 'hashed_password9', '2024-10-09', '2024-10-09'),
+('steve_rogers', 'steve@example.com', 'hashed_password10', '2024-10-10', '2024-10-10'),
+('natasha_romanoff', 'natasha@example.com', 'hashed_password11', '2024-10-10', '2024-10-10'),
+('thor_odinson', 'thor@example.com', 'hashed_password12', '2024-10-11', '2024-10-11');
