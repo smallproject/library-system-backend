@@ -6,10 +6,11 @@ import nl.smallproject.www.librarysystembackend.dtos.Book.BookUpdateDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.BookMapper;
 import nl.smallproject.www.librarysystembackend.models.Book;
+import nl.smallproject.www.librarysystembackend.models.Inventory;
 import nl.smallproject.www.librarysystembackend.models.UserReview;
 import nl.smallproject.www.librarysystembackend.repositories.BookRepository;
+import nl.smallproject.www.librarysystembackend.repositories.InventoryRepository;
 import nl.smallproject.www.librarysystembackend.repositories.UserReviewRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +23,13 @@ public class BookService {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
     private final UserReviewRepository userReviewRepository;
+    private final InventoryRepository inventoryRepository;
 
-    public BookService(BookRepository bookRepository, BookMapper bookMapper, UserReviewRepository userReviewRepository) {
+    public BookService(BookRepository bookRepository, BookMapper bookMapper, UserReviewRepository userReviewRepository, InventoryRepository inventoryRepository) {
         this.bookRepository = bookRepository;
         this.bookMapper = bookMapper;
         this.userReviewRepository = userReviewRepository;
+        this.inventoryRepository = inventoryRepository;
     }
 
     public List<BookOutputDto> getAllBooks() {
@@ -85,6 +88,30 @@ public class BookService {
                 existingUserReview.setBook(existingBook); //Bi-directional
             } else {
                 throw new RecordNotFoundException("User Review not found with this id: " +userReviewId);
+            }
+            bookRepository.save(existingBook);
+        } else {
+            throw new RecordNotFoundException("Book not found with this id: " +bookId);
+        }
+    }
+
+    public void assignInventoryToBook(Long bookId, Long inventoryId) {
+        Optional<Book> bookOptional = Optional.ofNullable(bookRepository.findById(bookId)
+                .orElseThrow(() -> new RecordNotFoundException("Book not found with this id: " + bookId)));
+
+        Optional<Inventory> inventoryOptional = Optional.ofNullable(inventoryRepository.findById(inventoryId)
+                .orElseThrow(() -> new RecordNotFoundException("Inventory not found with this id: " + inventoryId)));
+
+        if (bookOptional.isPresent()) {
+            Book existingBook = bookOptional.get();
+            if (inventoryOptional.isPresent()) {
+                Inventory existingInventory = inventoryOptional.get();
+                List<Inventory> inventories = new ArrayList<>();
+                inventories.add(existingInventory);
+                existingBook.setInventories(inventories);
+                existingInventory.setBook(existingBook); // Bi-directional
+            } else {
+                throw new RecordNotFoundException("Inventory not found with this id: "+inventoryId);
             }
             bookRepository.save(existingBook);
         } else {
