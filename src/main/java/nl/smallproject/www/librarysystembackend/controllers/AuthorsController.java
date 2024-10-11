@@ -60,4 +60,10 @@ public class AuthorsController {
         authorService.deleteAuthor(id);
         return ResponseEntity.noContent().build();
     }
+
+    @RequestMapping(value = "{authorId}/books/{bookId}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> assignBookToAuthor(@PathVariable final Long authorId,@PathVariable final Long bookId) {
+        authorService.assignBookToAuthor(authorId, bookId);
+        return ResponseEntity.noContent().build();
+    }
 }
