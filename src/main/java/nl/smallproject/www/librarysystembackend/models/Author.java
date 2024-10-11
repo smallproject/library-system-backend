@@ -1,12 +1,10 @@
 package nl.smallproject.www.librarysystembackend.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
-//necessary for writing into the database
-//@Data
 @Entity(name = "authors")
 public class Author {
     @Id
@@ -48,6 +46,10 @@ public class Author {
 
     @Column(name = "profilepictureurl")
     private String profilePictureUrl;
+
+    @Column(name = "books")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Book> books;
 
     public Long getId() {
         return id;
@@ -151,5 +153,13 @@ public class Author {
 
     public void setProfilePictureUrl(String profilePictureUrl) {
         this.profilePictureUrl = profilePictureUrl;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

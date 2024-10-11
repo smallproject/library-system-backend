@@ -3,7 +3,6 @@ package nl.smallproject.www.librarysystembackend.models;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity(name = "books")
 public class Book {
@@ -16,10 +15,6 @@ public class Book {
 
     @Column(name = "title")
     private String title;
-
-//    this needs relation
-//    private List<Author> authors;
-
 
     @Column(name = "publicationdate")
     private Date publicationDate;
@@ -50,6 +45,10 @@ public class Book {
 
     @Column(name = "status")
     private String status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
+    private Author author;
 
     public Long getId() {
         return id;
@@ -153,5 +152,13 @@ public class Book {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }
