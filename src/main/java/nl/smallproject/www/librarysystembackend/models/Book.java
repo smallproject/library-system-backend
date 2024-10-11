@@ -55,6 +55,10 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<UserReview> userReviews;
 
+    @Column(name = "inventories")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Inventory> inventories;
+
     public Long getId() {
         return id;
     }
@@ -173,5 +177,13 @@ public class Book {
 
     public void setUserReviews(List<UserReview> userReviews) {
         this.userReviews = userReviews;
+    }
+
+    public List<Inventory> getInventories() {
+        return inventories;
+    }
+
+    public void setInventories(List<Inventory> inventories) {
+        this.inventories = inventories;
     }
 }

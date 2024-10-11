@@ -65,6 +65,10 @@ public class Inventory {
     @Column(name = "purchasedate")
     private Date purchaseDate;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id")
+    private Book book;
+
     public Long getId() {
         return id;
     }
@@ -215,5 +219,13 @@ public class Inventory {
 
     public void setPurchaseDate(Date purchaseDate) {
         this.purchaseDate = purchaseDate;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }
