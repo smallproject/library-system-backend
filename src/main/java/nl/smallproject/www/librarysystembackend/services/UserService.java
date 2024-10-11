@@ -44,8 +44,9 @@ public class UserService {
             throw new RecordNotFoundException("User not found with this id: " +id);
         }
     }
-//
-//    public User createUser(UserInputDto userInputDto) {
-//
-//    }
+
+    public User createUser(UserInputDto userInputDto) {
+        User user = userMapper.userInputDtoToEntity(userInputDto);
+        return userRepository.save(user);
+    }
 }
