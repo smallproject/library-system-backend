@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/users")
 public class UsersController {
@@ -15,6 +17,12 @@ public class UsersController {
 
     public UsersController(UserService userService) {
         this.userService = userService;
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<UserOutputDto>> getAllUsers() {
+        List<UserOutputDto> userOutputDtos = userService.getAllUsers();
+        return ResponseEntity.ok(userOutputDtos);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
