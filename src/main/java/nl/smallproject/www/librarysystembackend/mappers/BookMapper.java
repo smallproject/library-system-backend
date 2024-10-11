@@ -3,11 +3,21 @@ package nl.smallproject.www.librarysystembackend.mappers;
 import nl.smallproject.www.librarysystembackend.dtos.Book.BookInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Book.BookOutputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Book.BookUpdateDto;
+import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewOutputDto;
 import nl.smallproject.www.librarysystembackend.models.Book;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class BookMapper {
+    private final UserReviewMapper userReviewMapper;
+
+    public BookMapper(UserReviewMapper userReviewMapper) {
+        this.userReviewMapper = userReviewMapper;
+    }
+
     public BookOutputDto bookEntityToOutputDto(Book book) {
         BookOutputDto bookOutputDto = new BookOutputDto();
         bookOutputDto.setId(book.getId());
@@ -23,6 +33,14 @@ public class BookMapper {
         bookOutputDto.setCopiesAvailable(book.getCopiesAvailable());
         bookOutputDto.setDateAdded(book.getDateAdded());
         bookOutputDto.setStatus(book.getStatus());
+
+        if (book.getUserReviews() != null) {
+            List<UserReviewOutputDto> userReviewOutputDtos = new ArrayList<>();
+            for (var userReview : book.getUserReviews()) {
+                userReviewOutputDtos.add(userReviewMapper.userReviewEntityToOutputDto(userReview));
+            }
+            bookOutputDto.setUserReviewOutputDtos(userReviewOutputDtos);
+        }
         return bookOutputDto;
     }
 
