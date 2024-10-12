@@ -6,7 +6,9 @@ import nl.smallproject.www.librarysystembackend.dtos.User.UserUpdateDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.UserMapper;
 import nl.smallproject.www.librarysystembackend.models.User;
+import nl.smallproject.www.librarysystembackend.models.UserReview;
 import nl.smallproject.www.librarysystembackend.repositories.UserRepository;
+import nl.smallproject.www.librarysystembackend.repositories.UserReviewRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +20,12 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final UserReviewRepository userReviewRepository;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
+    public UserService(UserRepository userRepository, UserMapper userMapper, UserReviewRepository userReviewRepository) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.userReviewRepository = userReviewRepository;
     }
 
     public List<UserOutputDto> getAllUsers() {
@@ -60,5 +64,30 @@ public class UserService {
 
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public void assignUserReviewToUser(Long userId, Long userReviewId) {
+        Optional<User> userOptional = Optional.ofNullable(userRepository.findById(userId)
+                .orElseThrow(() -> new RecordNotFoundException("User not found with this id: " + userId)));
+
+        Optional<UserReview> userReviewOptional = Optional.ofNullable(userReviewRepository.findById(userReviewId)
+                .orElseThrow(() -> new RecordNotFoundException("User Review not found with this id: " + userReviewId)));
+
+        if (userOptional.isPresent()) {
+            User existingUser = userOptional.get();
+            if (userReviewOptional.isPresent()) {
+                UserReview existingUserReview = userReviewOptional.get();
+                List<UserReview> userReviews = new ArrayList<>();
+                userReviews.add(existingUserReview);
+
+                existingUser.setUserReviews(userReviews);
+                existingUserReview.setUser(existingUser); // Bi-directional
+            } else {
+                throw new RecordNotFoundException("User Review not found with this id: " +userReviewId);
+            }
+            userRepository.save(existingUser);
+        } else {
+            throw new RecordNotFoundException("User not found with this id: " +userId);
+        }
     }
 }
