@@ -59,4 +59,10 @@ public class UsersController {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
+
+    @RequestMapping(value = "{userId}/userreview/{userReviewId}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> assignUserReviewToUser(@PathVariable final Long userId, @PathVariable final Long userReviewId) {
+        userService.assignUserReviewToUser(userId, userReviewId);
+        return ResponseEntity.noContent().build();
+    }
 }
