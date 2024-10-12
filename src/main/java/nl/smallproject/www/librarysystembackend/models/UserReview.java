@@ -68,6 +68,10 @@ public class UserReview {
     @JoinColumn(name = "book_id")
     private Book book;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Long getId() {
         return id;
     }
@@ -226,5 +230,13 @@ public class UserReview {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
