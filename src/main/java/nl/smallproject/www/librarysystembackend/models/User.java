@@ -3,6 +3,7 @@ package nl.smallproject.www.librarysystembackend.models;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "users")
 public class User {
@@ -24,6 +25,10 @@ public class User {
 
     @Column(name = "updatedat")
     private Date updatedAt;
+
+    @Column(name = "userreviews")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<UserReview> userReviews;
 
     public Long getId() {
         return id;
@@ -71,5 +76,13 @@ public class User {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<UserReview> getUserReviews() {
+        return userReviews;
+    }
+
+    public void setUserReviews(List<UserReview> userReviews) {
+        this.userReviews = userReviews;
     }
 }
