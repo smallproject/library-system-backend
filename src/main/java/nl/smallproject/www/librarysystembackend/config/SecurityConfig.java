@@ -31,7 +31,12 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/public").permitAll()
+//                        .requestMatchers("/api/v1/**").permitAll()
                         .requestMatchers("/api/v1/**").authenticated()
+                        .requestMatchers("/api/v1/books/**").authenticated()
+                        .requestMatchers("/api/v1/inventories/**").authenticated()
+                        .requestMatchers("/api/v1/userreviews/**").authenticated()
+//                        .requestMatchers("/api/v1/**").authenticated()
 
 
                         .requestMatchers("/secure").hasAnyRole("ADMIN","USER")
