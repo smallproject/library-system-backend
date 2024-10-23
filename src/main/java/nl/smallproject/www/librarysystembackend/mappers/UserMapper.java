@@ -1,42 +1,51 @@
 package nl.smallproject.www.librarysystembackend.mappers;
 
-import nl.smallproject.www.librarysystembackend.dtos.User.UserInputDto;
-import nl.smallproject.www.librarysystembackend.dtos.User.UserOutputDto;
-import nl.smallproject.www.librarysystembackend.dtos.User.UserUpdateDto;
-import nl.smallproject.www.librarysystembackend.models.User;
+
+import nl.smallproject.www.librarysystembackend.entities.User;
+import nl.smallproject.www.librarysystembackend.models.UserModel;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper {
+public class UserMapper{
 
-    public UserOutputDto userEntityToOutputDto(User user) {
-        UserOutputDto userOutputDto = new UserOutputDto();
-        userOutputDto.setId(user.getId());
-        userOutputDto.setUsername(user.getUsername());
-        userOutputDto.setEmail(user.getEmail());
-        userOutputDto.setPasswordHash(user.getPasswordHash());
-        userOutputDto.setCreatedAt(user.getCreatedAt());
-        userOutputDto.setUpdatedAt(user.getUpdatedAt());
-        return userOutputDto;
+    private final RoleMapper roleMapper;
+
+    private final PasswordEncoder passwordEncoder;
+
+    public UserMapper(RoleMapper roleMapper, PasswordEncoder passwordEncoder) {
+        this.roleMapper = roleMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public User userInputDtoToEntity(UserInputDto userInputDto) {
-        User user = new User();
-        user.setUsername(userInputDto.getUsername());
-        user.setEmail(userInputDto.getEmail());
-        user.setPasswordHash(userInputDto.getPasswordHash());
-        user.setCreatedAt(userInputDto.getCreatedAt());
-        user.setUpdatedAt(userInputDto.getUpdatedAt());
-        return user;
+    public UserModel fromEntity(User entity) {
+        if (entity == null) {
+            return null;
+        }
+        UserModel model = new UserModel(entity.getId());
+        model.setPassword(entity.getPassword());
+        model.setUserName(entity.getUserName());
+        model.areCredentialsExpired(entity.areCredentialsExpired());
+        model.setEnabled(entity.isEnabled());
+        model.setExpired(entity.isExpired());
+        model.setLocked(entity.isLocked());
+        model.setRoles(roleMapper.fromEntities(entity.getRoles()));
+        return model;
     }
 
-    public User userUpdateDtoToEntity(UserUpdateDto userUpdateDto) {
-        User user = new User();
-        user.setUsername(userUpdateDto.getUsername());
-        user.setEmail(userUpdateDto.getEmail());
-        user.setPasswordHash(userUpdateDto.getPasswordHash());
-        user.setCreatedAt(userUpdateDto.getCreatedAt());
-        user.setUpdatedAt(userUpdateDto.getUpdatedAt());
-        return user;
+    public User toEntity(UserModel model) {
+        if (model == null) {
+            return null;
+        }
+        User entity = new User(model.getId());
+        entity.setPassword(passwordEncoder.encode(model.getPassword()));
+        entity.setUserName(model.getUserName());
+        entity.setAreCredentialsExpired(model.areCredentialsExpired());
+        entity.setEnabled(model.isEnabled());
+        entity.setExpired(model.isExpired());
+        entity.setLocked(model.isLocked());
+        entity.setRoles(roleMapper.toEntities(model.getRoles()));
+        return entity;
     }
 }
+
