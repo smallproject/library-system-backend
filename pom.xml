@@ -10,7 +10,7 @@
     </parent>
     <groupId>nl.smallproject.www</groupId>
     <artifactId>library-system-backend</artifactId>
-    <version>7.0.0-smallproject</version>
+    <version>7.1.0-smallproject</version>
     <name>library-system-backend</name>
     <description>Bibliotheek Systeem voor het Eindopdracht Project</description>
     <url/>
