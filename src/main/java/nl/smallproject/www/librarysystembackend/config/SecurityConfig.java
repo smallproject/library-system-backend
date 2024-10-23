@@ -27,8 +27,9 @@ public class SecurityConfig {
         http
                 .httpBasic(hp -> hp.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/users").permitAll()
+                        .requestMatchers("/api/v1/login").permitAll()
+                        .requestMatchers("/api/v1/users").permitAll()
+                        .requestMatchers("/api/v1/**").authenticated()
                         .requestMatchers("/public/**").permitAll()
                         .requestMatchers("/secure").authenticated()
                         .requestMatchers("/secure/admin").hasRole("ADMIN")
