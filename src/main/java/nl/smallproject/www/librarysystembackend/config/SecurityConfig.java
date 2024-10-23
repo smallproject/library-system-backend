@@ -1,58 +1,54 @@
 package nl.smallproject.www.librarysystembackend.config;
 
-import nl.smallproject.www.librarysystembackend.services.AuthenticationUserService;
+import nl.smallproject.www.librarysystembackend.security.JwtRequestFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
     @Bean
-    public AuthenticationManager authManager(HttpSecurity http, PasswordEncoder encoder, AuthenticationUserService myUserDetailsService) throws Exception {
-        var builder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        builder.userDetailsService(myUserDetailsService).passwordEncoder(encoder);
-        return builder.build();
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
-
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, JwtRequestFilter jwtRequestFilter) throws Exception {
         http
-                .httpBasic(Customizer.withDefaults())
+                .httpBasic(hp -> hp.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/public").permitAll()
-//                        .requestMatchers("/api/v1/**").permitAll()
+                        .requestMatchers("/api/v1/login").permitAll()
+                        .requestMatchers("/api/v1/users").permitAll()
                         .requestMatchers("/api/v1/**").authenticated()
-                        .requestMatchers("/api/v1/books/**").authenticated()
-                        .requestMatchers("/api/v1/inventories/**").authenticated()
-                        .requestMatchers("/api/v1/userreviews/**").authenticated()
-//                        .requestMatchers("/api/v1/**").authenticated()
-
-
-                        .requestMatchers("/secure").hasAnyRole("ADMIN","USER")
-                        .requestMatchers("/secure/admin").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/public/**").permitAll()
+                        .requestMatchers("/secure").authenticated()
+                        .requestMatchers("/secure/admin").hasRole("ADMIN")
+                        .requestMatchers("/users/**").hasRole("ADMIN")
+                        .requestMatchers("/secure/user").hasRole("USER")
                         .anyRequest().denyAll()
                 )
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(csrf -> csrf.disable())
-                .cors(cors -> {
-                })
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .cors(cors -> {})
+                .sessionManagement( session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         ;
-        return http.build();
+        return  http.build();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public AuthenticationManager authManager(HttpSecurity http, PasswordEncoder encoder, UserDetailsService apiUserDetailsService) throws Exception {
+        var builder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        builder.userDetailsService(apiUserDetailsService).passwordEncoder(encoder);
+        return builder.build();
     }
 }
