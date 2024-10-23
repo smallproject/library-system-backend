@@ -10,21 +10,20 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class AuthController {
+@RequestMapping("/api/v1")
+public class AuthenticationController {
     private final AuthenticationManager authManager;
     private final JwtService jwtService;
 
-    public AuthController(AuthenticationManager man, JwtService service) {
+    public AuthenticationController(AuthenticationManager man, JwtService service) {
         this.authManager = man;
         this.jwtService = service;
     }
 
-    @PostMapping("/login")
+    @RequestMapping(value ="/login", method = RequestMethod.POST)
     public ResponseEntity<Object> login(@RequestBody UserLoginRequestDTO userLoginRequestDTO
     ) {
         UsernamePasswordAuthenticationToken up =
