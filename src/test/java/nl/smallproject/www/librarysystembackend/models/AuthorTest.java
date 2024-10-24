@@ -33,7 +33,7 @@ class AuthorTest {
         Long authorId = author.getId();
 
         // assert
-        assertEquals(100L, authorId, "Id should match");
+        assertEquals(100L, authorId);
     }
 
     @Test
