@@ -1,21 +1,21 @@
 package nl.smallproject.www.librarysystembackend.models;
 
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AuthorTest {
 
+    private Author author;
+
     @BeforeEach
     void setUp() {
-
+        author = new Author();
     }
 
     @AfterEach
@@ -27,181 +27,168 @@ class AuthorTest {
     @DisplayName("Should keep author id")
     void shouldKeepAuthorId() {
         // arrange
-        Author author = new Author();
         author.setId(100L);
 
         // act
-        Long id = author.getId();
+        Long authorId = author.getId();
 
         // assert
-        assertEquals(100L, id);
+        assertEquals(100L, authorId, "Id should match");
     }
 
     @Test
     @DisplayName("Should keep author first name")
     void shouldKeepAuthorFirstName() {
         // arrange
-        Author author = new Author();
         author.setFirstName("Vincent");
 
         // act
-        String str = author.getFirstName();
+        String firstName = author.getFirstName();
 
         // assert
-        assertEquals("Vincent", str);
+        assertEquals("Vincent", firstName);
     }
 
     @Test
     @DisplayName("Should keep author middle name")
     void shouldKeepAuthorMiddleName() {
         // arrange
-        Author author = new Author();
         author.setMiddleName("van");
 
         // act
-        String str = author.getMiddleName();
+        String middleName = author.getMiddleName();
 
         // assert
-        assertEquals("van", str);
+        assertEquals("van", middleName);
     }
 
     @Test
     @DisplayName("Should keep author last name")
     void shouldKeepAuthorLastName() {
         // arrange
-        Author author = new Author();
         author.setLastName("Gogh");
 
         // act
-        String str = author.getLastName();
+        String lastName = author.getLastName();
 
         // assert
-        assertEquals("Gogh", str);
+        assertEquals("Gogh", lastName);
     }
 
     @Test
     @DisplayName("Should keep author date of birth")
     void shouldKeepAuthorDateOfBirth() {
         // arrange
-        Author author = new Author();
         author.setDateOfBirth(new Date(1853, 03, 30));
 
         // act
-        Date date = author.getDateOfBirth();
+        Date dateOfBirth = author.getDateOfBirth();
 
         // assert
-        assertEquals(new Date(1853,03,30), date);
+        assertEquals(new Date(1853,03,30), dateOfBirth);
     }
 
     @Test
     @DisplayName("Should keep author nationality")
     void shouldKeepAuthorNationality() {
         // arrange
-        Author author = new Author();
         author.setNationality("Dutch");
 
         // act
-        String str = author.getNationality();
+        String nationality = author.getNationality();
 
         // assert
-        assertEquals("Dutch", str);
+        assertEquals("Dutch", nationality);
     }
 
     @Test
     @DisplayName("Should keep author date of death")
     void shouldKeepAuthorDateOfDeath() {
         // arrange
-        Author author = new Author();
         author.setDateOfDeath(new Date(1890,07,29));
 
         // act
-        Date date = author.getDateOfDeath();
+        Date dateOfDeath = author.getDateOfDeath();
 
         // assert
-        assertEquals(new Date(1890,07,29), date);
+        assertEquals(new Date(1890,07,29), dateOfDeath);
     }
 
     @Test
     @DisplayName("Should keep author bio")
     void shouldKeepAuthorBio() {
         // arrange
-        Author author = new Author();
         author.setBio("Vincent Willem van Gogh was een Nederlands kunstschilder. Zijn werk valt onder het postimpressionisme, een kunststroming die het negentiende-eeuwse impressionisme opvolgde.");
 
         // act
-        String str = author.getBio();
+        String bio = author.getBio();
 
         // assert
-        assertEquals("Vincent Willem van Gogh was een Nederlands kunstschilder. Zijn werk valt onder het postimpressionisme, een kunststroming die het negentiende-eeuwse impressionisme opvolgde.", str);
+        assertEquals("Vincent Willem van Gogh was een Nederlands kunstschilder. Zijn werk valt onder het postimpressionisme, een kunststroming die het negentiende-eeuwse impressionisme opvolgde.", bio);
     }
 
     @Test
     @DisplayName("Should keep author website")
     void shouldKeepAuthorWebsite() {
         // arrange
-        Author author = new Author();
         author.setWebsite("www.vincentvangogh.nl");
 
         // act
-        String str = author.getWebsite();
+        String website = author.getWebsite();
 
         // assert
-        assertEquals("www.vincentvangogh.nl", str);
+        assertEquals("www.vincentvangogh.nl", website);
     }
 
     @Test
     @DisplayName("Should keep author email")
     void shouldKeepAuthorEmail() {
         // arrange
-        Author author = new Author();
         author.setEmail("vincent.van.gogh@netherlands.nl");
 
         // act
-        String str = author.getEmail();
+        String email = author.getEmail();
 
         // assert
-        assertEquals("vincent.van.gogh@netherlands.nl", str);
+        assertEquals("vincent.van.gogh@netherlands.nl", email);
     }
 
     @Test
     @DisplayName("Should keep author awards")
     void shouldKeepAuthorAwards() {
         // arrange
-        Author author = new Author();
         author.setAwards("The Vincent van Gogh Biennal Award for Contemporary Art in Europe");
 
         // act
-        String str = author.getAwards();
+        String awards = author.getAwards();
 
         // assert
-        assertEquals("The Vincent van Gogh Biennal Award for Contemporary Art in Europe", str);
+        assertEquals("The Vincent van Gogh Biennal Award for Contemporary Art in Europe", awards);
     }
 
     @Test
     @DisplayName("Should keep author active years")
     void shouldKeepAuthorActiveYears() {
         // arrange
-        Author author = new Author();
         author.setActiveYears("1878 – 1890");
 
         // act
-        String str = author.getActiveYears();
+        String activeYears = author.getActiveYears();
 
         // assert
-        assertEquals("1878 – 1890", str);
+        assertEquals("1878 – 1890", activeYears);
     }
 
     @Test
     @DisplayName("Should keep author profile picture url")
     void shouldKeepAuthorProfilePictureUrl() {
         // arrange
-        Author author = new Author();
         author.setProfilePictureUrl("www.vincentvangogh.nl/profilepicture");
 
         // act
-        String str = author.getProfilePictureUrl();
+        String profilePictureUrl = author.getProfilePictureUrl();
 
         // assert
-        assertEquals("www.vincentvangogh.nl/profilepicture", str);
+        assertEquals("www.vincentvangogh.nl/profilepicture", profilePictureUrl);
     }
 }
