@@ -5,7 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -190,5 +192,29 @@ class AuthorTest {
 
         // assert
         assertEquals("www.vincentvangogh.nl/profilepicture", profilePictureUrl);
+    }
+
+    @Test
+    @DisplayName("Should correctly set and get books")
+    void shouldSetAndGetBooks() {
+        // arrange
+        Author author = new Author();
+        Book book1 = new Book();
+        book1.setTitle("Book One");
+        Book book2 = new Book();
+        book2.setTitle("Book Two");
+
+        List<Book> books = new ArrayList<>();
+        books.add(book1);
+        books.add(book2);
+
+        // act
+        author.setBooks(books);
+        List<Book> retrievedBooks = author.getBooks();
+
+        // assert
+        assertEquals(2, retrievedBooks.size());
+        assertEquals("Book One", retrievedBooks.get(0).getTitle());
+        assertEquals("Book Two", retrievedBooks.get(1).getTitle());
     }
 }
