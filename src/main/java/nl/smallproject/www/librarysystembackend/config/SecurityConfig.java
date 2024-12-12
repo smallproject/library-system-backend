@@ -3,6 +3,7 @@ package nl.smallproject.www.librarysystembackend.config;
 import nl.smallproject.www.librarysystembackend.security.JwtRequestFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,13 +29,47 @@ public class SecurityConfig {
                 .httpBasic(hp -> hp.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/login").permitAll()
-                        .requestMatchers("/api/v1/users").permitAll()
-                        .requestMatchers("/api/v1/**").authenticated()
-                        .requestMatchers("/public/**").permitAll()
-                        .requestMatchers("/secure").authenticated()
-                        .requestMatchers("/secure/admin").hasRole("ADMIN")
-                        .requestMatchers("/users/**").hasRole("ADMIN")
-                        .requestMatchers("/secure/user").hasRole("USER")
+                        .requestMatchers("/api/v1/books/search").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/v1/books").authenticated()
+                        .requestMatchers(HttpMethod.GET,"/api/v1/books/*").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/books/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/books/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/books/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.GET,"/api/v1/authors").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.GET,"/api/v1/authors/*").authenticated()
+
+                        .requestMatchers(HttpMethod.POST, "/api/v1/authors/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/authors/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/authors/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+
+                        .requestMatchers(HttpMethod.GET,"/api/v1/inventories").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.GET,"/api/v1/inventories/*").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/inventories/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/inventories/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/inventories/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+
+                        .requestMatchers(HttpMethod.GET,"/api/v1/reservations").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.GET,"/api/v1/reservations/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/reservations/**").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/reservations/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/reservations/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+
+                        .requestMatchers(HttpMethod.GET,"/api/v1/users").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.GET,"/api/v1/users/*").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/users/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/users/**").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.GET,"/api/v1/users/photo/*").authenticated()
+
+                        .requestMatchers(HttpMethod.GET, "/api/v1/userreviews/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/userreviews/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/userreviews/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/userreviews/**").hasAnyRole("ADMIN","LIBRARY_STAFF")
+
+                        .requestMatchers(HttpMethod.GET,"/api/v1/addresses").hasAnyRole("ADMIN", "LIBRARY_STAFF")
+                        .requestMatchers(HttpMethod.GET,"/api/v1/addresses/*").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/addresses/**").authenticated()
+
                         .anyRequest().denyAll()
                 )
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)

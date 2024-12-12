@@ -1,7 +1,6 @@
 package nl.smallproject.www.librarysystembackend.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.util.Date;
 

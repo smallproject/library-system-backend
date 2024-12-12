@@ -1,20 +1,15 @@
 package nl.smallproject.www.librarysystembackend.dtos.UserReview;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
 import java.util.Date;
 
 public class UserReviewOutputDto {
     private Long id;
 
-    private String userId;
+    private Long userId;
 
     private Long bookId;
 
-    private Integer rating;
+    private Double rating;
 
     private String reviewText;
 
@@ -54,11 +49,11 @@ public class UserReviewOutputDto {
         this.id = id;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -70,11 +65,11 @@ public class UserReviewOutputDto {
         this.bookId = bookId;
     }
 
-    public Integer getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 

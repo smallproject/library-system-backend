@@ -9,15 +9,13 @@ import java.util.Date;
 
 public class UserReviewInputDto {
 
-    @NotBlank(message = "{userReview.userId.notblank}")
-    @Size(min = 3, max = 255, message = "{userReview.userId.size}")
-    private String userId;
+    private Long userId;
 
     @PositiveOrZero(message = "{userReview.bookId.positiveornotzero}")
     private Long bookId;
 
     @PositiveOrZero(message = "{userReview.rating.positiveornotzero}")
-    private Integer rating;
+    private Double rating;
 
     @NotBlank(message = "{userReview.reviewText.notblank}")
     @Size(min = 3, max = 255, message = "{userReview.reviewText.size}")
@@ -33,12 +31,9 @@ public class UserReviewInputDto {
     @PositiveOrZero(message = "{userReview.helpfulCount.positiveornotzero}")
     private Integer helpfulCount;
 
-    //maybe nullable? or false default
     @NotNull(message = "{userReview.flagged.notnull}")
     private Boolean flagged;
 
-    @NotBlank(message = "{userReview.flaggedReason.notblank}")
-    @Size(min = 3, max = 255, message = "{userReview.flaggedReason.size}")
     private String flaggedReason;
 
     @PositiveOrZero(message = "{userReview.responseCount.positiveornotzero}")
@@ -64,18 +59,16 @@ public class UserReviewInputDto {
     @NotNull(message = "{userReview.spoilerFlag.notnull}")
     private Boolean spoilerFlag;
 
-    @NotBlank(message = "{userReview.responseFromLibrarian.notblank}")
-    @Size(min = 3, max = 255, message = "{userReview.responseFromLibrarian.size}")
     private String responseFromLibrarian;
 
     @NotNull(message = "{userReview.anonymousReview.notnull}")
     private Boolean anonymousReview;
 
-    public @NotBlank(message = "{userReview.userId.notblank}") @Size(min = 3, max = 255, message = "{userReview.userId.size}") String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(@NotBlank(message = "{userReview.userId.notblank}") @Size(min = 3, max = 255, message = "{userReview.userId.size}") String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -87,11 +80,11 @@ public class UserReviewInputDto {
         this.bookId = bookId;
     }
 
-    public @PositiveOrZero(message = "{userReview.rating.positiveornotzero}") Integer getRating() {
+    public @PositiveOrZero(message = "{userReview.rating.positiveornotzero}") Double getRating() {
         return rating;
     }
 
-    public void setRating(@PositiveOrZero(message = "{userReview.rating.positiveornotzero}") Integer rating) {
+    public void setRating(@PositiveOrZero(message = "{userReview.rating.positiveornotzero}") Double rating) {
         this.rating = rating;
     }
 
@@ -135,11 +128,11 @@ public class UserReviewInputDto {
         this.flagged = flagged;
     }
 
-    public @NotBlank(message = "{userReview.flaggedReason.notblank}") @Size(min = 3, max = 255, message = "{userReview.flaggedReason.size}") String getFlaggedReason() {
+    public String getFlaggedReason() {
         return flaggedReason;
     }
 
-    public void setFlaggedReason(@NotBlank(message = "{userReview.flaggedReason.notblank}") @Size(min = 3, max = 255, message = "{userReview.flaggedReason.size}") String flaggedReason) {
+    public void setFlaggedReason(String flaggedReason) {
         this.flaggedReason = flaggedReason;
     }
 
@@ -199,11 +192,11 @@ public class UserReviewInputDto {
         this.spoilerFlag = spoilerFlag;
     }
 
-    public @NotBlank(message = "{userReview.responseFromLibrarian.notblank}") @Size(min = 3, max = 255, message = "{userReview.responseFromLibrarian.size}") String getResponseFromLibrarian() {
+    public String getResponseFromLibrarian() {
         return responseFromLibrarian;
     }
 
-    public void setResponseFromLibrarian(@NotBlank(message = "{userReview.responseFromLibrarian.notblank}") @Size(min = 3, max = 255, message = "{userReview.responseFromLibrarian.size}") String responseFromLibrarian) {
+    public void setResponseFromLibrarian(String responseFromLibrarian) {
         this.responseFromLibrarian = responseFromLibrarian;
     }
 

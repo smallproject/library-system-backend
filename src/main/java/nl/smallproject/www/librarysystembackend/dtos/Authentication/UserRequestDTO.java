@@ -6,18 +6,18 @@ import jakarta.validation.constraints.NotEmpty;
 public class UserRequestDTO {
 
     @NotBlank(message = "Username is required")
-    private String userName;
+    private String username;
     @NotBlank(message = "password is required")
     private String password;
     @NotEmpty(message = "At least 1 role is required")
     private String[] roles;
 
-    public String getUserName() {
-        return userName;
+    public @NotBlank(message = "Username is required") String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(@NotBlank(message = "Username is required") String username) {
+        this.username = username;
     }
 
     public String getPassword() {

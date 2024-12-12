@@ -9,15 +9,13 @@ import java.util.Date;
 
 public class UserReviewUpdateDto {
 
-    @NotBlank(message = "{userReview.userId.notblank}")
-    @Size(min = 3, max = 255, message = "{userReview.userId.size}")
-    private String userId;
+    private Long userId;
 
     @PositiveOrZero(message = "{userReview.bookId.positiveornotzero}")
     private Long bookId;
 
     @PositiveOrZero(message = "{userReview.rating.positiveornotzero}")
-    private Integer rating;
+    private Double rating;
 
     @NotBlank(message = "{userReview.reviewText.notblank}")
     @Size(min = 3, max = 255, message = "{userReview.reviewText.size}")
@@ -69,11 +67,11 @@ public class UserReviewUpdateDto {
     @NotNull(message = "{userReview.anonymousReview.notnull}")
     private Boolean anonymousReview;
 
-    public @NotBlank(message = "{userReview.userId.notblank}") @Size(min = 3, max = 255, message = "{userReview.userId.size}") String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(@NotBlank(message = "{userReview.userId.notblank}") @Size(min = 3, max = 255, message = "{userReview.userId.size}") String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -85,11 +83,11 @@ public class UserReviewUpdateDto {
         this.bookId = bookId;
     }
 
-    public @PositiveOrZero(message = "{userReview.rating.positiveornotzero}") Integer getRating() {
+    public @PositiveOrZero(message = "{userReview.rating.positiveornotzero}") Double getRating() {
         return rating;
     }
 
-    public void setRating(@PositiveOrZero(message = "{userReview.rating.positiveornotzero}") Integer rating) {
+    public void setRating(@PositiveOrZero(message = "{userReview.rating.positiveornotzero}") Double rating) {
         this.rating = rating;
     }
 

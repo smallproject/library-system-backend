@@ -7,13 +7,18 @@ import java.util.stream.Collectors;
 public class UserModel {
 
     private Long id = -1L;
-    private String userName;
+    private String username;
     private String password;
     private List<RoleModel> roles = new ArrayList<>();
     private boolean isExpired;
     private boolean isLocked;
     private boolean areCredentialsExpired;
     private boolean isEnabled;
+
+    private String name;
+    private String bio;
+    private String location;
+    private String email;
 
     public UserModel() {
     }
@@ -72,16 +77,16 @@ public class UserModel {
 
     public List<String> getRoleNames() {
         return roles.stream()
-                .map(RoleModel::getRoleName) // Converts each Role object to its name
+                .map(RoleModel::getRoleName)
                 .collect(Collectors.toList());
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -90,6 +95,46 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isAreCredentialsExpired() {
+        return areCredentialsExpired;
+    }
+
+    public void setAreCredentialsExpired(boolean areCredentialsExpired) {
+        this.areCredentialsExpired = areCredentialsExpired;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
 

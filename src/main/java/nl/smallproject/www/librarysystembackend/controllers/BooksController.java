@@ -4,8 +4,10 @@ import jakarta.validation.Valid;
 import nl.smallproject.www.librarysystembackend.dtos.Book.BookInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Book.BookOutputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Book.BookUpdateDto;
+import nl.smallproject.www.librarysystembackend.models.Author;
 import nl.smallproject.www.librarysystembackend.models.Book;
 import nl.smallproject.www.librarysystembackend.services.BookService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -71,5 +73,24 @@ public class BooksController {
     public ResponseEntity<Object> assignInventoryToBook(@PathVariable final Long bookId, @PathVariable final Long inventoryId) {
         bookService.assignInventoryToBook(bookId, inventoryId);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "paginated", method = RequestMethod.GET)
+    public Page<Book> getBooksPaginated(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        return bookService.getBooksPagination(page, size);
+    }
+
+    @RequestMapping(value ="paginated/author", method = RequestMethod.GET)
+    public Page<Book> getBooksByGenre(@RequestParam String authorText, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        // needs to fetch author by name
+        Author author = new Author();
+
+        return bookService.getBookByAuthor(author, page, size);
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ResponseEntity<List<BookOutputDto>> searchBooks(@RequestParam String title) {
+        List<BookOutputDto> bookOutputDtos = bookService.searchBooksByTitle(title);
+        return ResponseEntity.ok(bookOutputDtos);
     }
 }

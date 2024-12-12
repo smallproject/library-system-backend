@@ -1,5 +1,6 @@
 package nl.smallproject.www.librarysystembackend.services;
 
+import jakarta.transaction.Transactional;
 import nl.smallproject.www.librarysystembackend.dtos.Author.AuthorInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Author.AuthorOutputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Author.AuthorUpdateDto;
@@ -49,12 +50,14 @@ public class AuthorService {
         }
     }
 
+    @Transactional
     public Author createAuthor(AuthorInputDto authorInputDto) {
         Author author = authorMapper.authorInputDtoToEntity(authorInputDto);
         authorRepository.save(author);
         return author;
     }
 
+    @Transactional
     public void updateAuthor(Long id, AuthorUpdateDto authorUpdateDto) {
         Author existingAuthor = authorRepository.getReferenceById(id);
         Author updatedAuthor = authorMapper.authorUpdateDtoToEntity(authorUpdateDto);
@@ -62,10 +65,12 @@ public class AuthorService {
         authorRepository.save(existingAuthor);
     }
 
+    @Transactional
     public void deleteAuthor(Long id) {
         authorRepository.deleteById(id);
     }
 
+    @Transactional
     public void assignBookToAuthor(Long authorId, Long bookId) {
         Optional<Author> authorOptional = Optional.ofNullable(authorRepository.findById(authorId)
                 .orElseThrow(() -> new RecordNotFoundException("Author not found with this id: " + authorId)));
@@ -75,16 +80,16 @@ public class AuthorService {
 
         if (authorOptional.isPresent()) {
             Author existingAuthor = authorOptional.get();
+            List<Author> existingAuthors = new ArrayList<>();
+            existingAuthors.add(existingAuthor);
 
             if (bookOptional.isPresent()) {
                 Book existingBook = bookOptional.get();
-                //needs further research
-//                existingAuthor.setBooks(Collections.singletonList(existingBook));
 
                 List<Book> books = new ArrayList<>();
                 books.add(existingBook);
                 existingAuthor.setBooks(books);
-                existingBook.setAuthor(existingAuthor); //Bi-directional
+                existingBook.setAuthor(existingAuthors); //Bi-directional
             } else {
                 throw new RecordNotFoundException("Author not found with this id: "+authorId);
             }
