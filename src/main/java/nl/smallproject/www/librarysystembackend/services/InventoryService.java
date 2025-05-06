@@ -1,5 +1,6 @@
 package nl.smallproject.www.librarysystembackend.services;
 
+import jakarta.transaction.Transactional;
 import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryOutputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Inventory.InventoryUpdateDto;
@@ -49,11 +50,13 @@ public class InventoryService {
 
     }
 
+    @Transactional
     public Inventory createInventory(InventoryInputDto inventoryInputDto) {
         Inventory inventory = inventoryMapper.inventoryInputDtoToEntity(inventoryInputDto);
         return inventoryRepository.save(inventory);
     }
 
+    @Transactional
     public void updateInventory(Long id, InventoryUpdateDto inventoryUpdateDto) {
         Inventory existingInventory = inventoryRepository.getReferenceById(id);
         Inventory updatedInventory = inventoryMapper.inventoryUpdateDtoToEntity(inventoryUpdateDto);
@@ -62,6 +65,7 @@ public class InventoryService {
         inventoryRepository.save(existingInventory);
     }
 
+    @Transactional
     public void deleteInventory(Long id) {
         inventoryRepository.deleteById(id);
     }

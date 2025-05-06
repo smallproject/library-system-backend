@@ -5,6 +5,7 @@ import nl.smallproject.www.librarysystembackend.entities.Role;
 import nl.smallproject.www.librarysystembackend.entities.User;
 import nl.smallproject.www.librarysystembackend.mappers.RoleMapper;
 import nl.smallproject.www.librarysystembackend.mappers.UserMapper;
+import nl.smallproject.www.librarysystembackend.models.Address;
 import nl.smallproject.www.librarysystembackend.models.UserModel;
 import nl.smallproject.www.librarysystembackend.repositories.RoleRepository;
 import nl.smallproject.www.librarysystembackend.repositories.UserRepository;
@@ -42,6 +43,13 @@ public class ApiUserDetailService implements UserDetailsService {
             user.getRoles().add(role);
         }
         updateRolesWithUser(user);
+
+        var address = new Address();
+        address.setStreet("");
+        address.setHouseNo("");
+        address.setPostCode("");
+        user.setAddress(address);
+
         var savedUser = userRepository.save(user);
         userModel.setId(savedUser.getId());
         return savedUser != null;
@@ -58,13 +66,13 @@ public class ApiUserDetailService implements UserDetailsService {
     }
 
     public Optional<UserModel> getUserByUserName(String username) {
-        var user = userRepository.findByUserName(username);
+        var user = userRepository.findByUsername(username);
         return getOptionalUserModel(user);
     }
 
 
     public Optional<UserModel> getUserByUserNameAndPassword(String username, String password) {
-        var user = userRepository.findByUserNameAndPassword(username, password);
+        var user = userRepository.findByUsernameAndPassword(username, password);
         return getOptionalUserModel(user);
     }
 

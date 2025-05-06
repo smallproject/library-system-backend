@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(exposedHeaders = "Authorization")
 @RestController
 @RequestMapping("/api/v1")
 public class AuthenticationController {

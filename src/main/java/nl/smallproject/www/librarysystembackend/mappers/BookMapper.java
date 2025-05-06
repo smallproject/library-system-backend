@@ -28,10 +28,10 @@ public class BookMapper {
         bookOutputDto.setTitle(book.getTitle());
         bookOutputDto.setPublicationDate(book.getPublicationDate());
         bookOutputDto.setGenre(book.getGenre());
-        bookOutputDto.setPagecount(book.getPageCount());
+        bookOutputDto.setPageCount(book.getPageCount());
         bookOutputDto.setLanguage(book.getLanguage());
         bookOutputDto.setCoverImageUrl(book.getCoverImageUrl());
-        bookOutputDto.setDescriptionsummary(book.getDescriptionSummary());
+        bookOutputDto.setDescriptionSummary(book.getDescriptionSummary());
         bookOutputDto.setRating(book.getRating());
         bookOutputDto.setCopiesAvailable(book.getCopiesAvailable());
         bookOutputDto.setDateAdded(book.getDateAdded());

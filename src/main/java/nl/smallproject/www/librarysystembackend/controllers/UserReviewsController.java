@@ -60,4 +60,11 @@ public class UserReviewsController {
         userReviewService.deleteUserReview(id);
         return ResponseEntity.noContent().build();
     }
+
+
+    @RequestMapping(value = "books/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<UserReviewOutputDto>> getUserReviewByBookId(@PathVariable Long id) {
+        List<UserReviewOutputDto> userReviewsOutputDto = userReviewService.getUserReviewsByBookId(id);
+        return  ResponseEntity.ok(userReviewsOutputDto);
+    }
 }

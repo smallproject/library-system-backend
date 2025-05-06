@@ -13,7 +13,7 @@ public class UserDTOMapper {
 
     public UserModel mapToModel(UserRequestDTO userDTO) {
         var result = new UserModel(-1L);
-        result.setUserName(userDTO.getUserName());
+        result.setUsername(userDTO.getUsername());
         result.setPassword(userDTO.getPassword());
         return result;
     }

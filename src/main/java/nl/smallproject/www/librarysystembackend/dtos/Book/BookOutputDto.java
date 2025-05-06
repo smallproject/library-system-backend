@@ -17,13 +17,13 @@ public class BookOutputDto {
 
     private String genre;
 
-    private Integer pagecount;
+    private Integer pageCount;
 
     private String language;
 
     private String coverImageUrl;
 
-    private String descriptionsummary;
+    private String descriptionSummary;
 
     private Double rating;
 
@@ -77,12 +77,12 @@ public class BookOutputDto {
         this.genre = genre;
     }
 
-    public Integer getPagecount() {
-        return pagecount;
+    public Integer getPageCount() {
+        return pageCount;
     }
 
-    public void setPagecount(Integer pagecount) {
-        this.pagecount = pagecount;
+    public void setPageCount(Integer pageCount) {
+        this.pageCount = pageCount;
     }
 
     public String getLanguage() {
@@ -101,12 +101,12 @@ public class BookOutputDto {
         this.coverImageUrl = coverImageUrl;
     }
 
-    public String getDescriptionsummary() {
-        return descriptionsummary;
+    public String getDescriptionSummary() {
+        return descriptionSummary;
     }
 
-    public void setDescriptionsummary(String descriptionsummary) {
-        this.descriptionsummary = descriptionsummary;
+    public void setDescriptionSummary(String descriptionSummary) {
+        this.descriptionSummary = descriptionSummary;
     }
 
     public Double getRating() {

@@ -3,15 +3,20 @@ package nl.smallproject.www.librarysystembackend.mappers;
 import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewOutputDto;
 import nl.smallproject.www.librarysystembackend.dtos.UserReview.UserReviewUpdateDto;
+import nl.smallproject.www.librarysystembackend.models.Book;
 import nl.smallproject.www.librarysystembackend.models.UserReview;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserReviewMapper {
+    public UserReviewMapper() {
+    }
+
     public UserReviewOutputDto userReviewEntityToOutputDto(UserReview userReview) {
         UserReviewOutputDto userReviewOutputDto = new UserReviewOutputDto();
         userReviewOutputDto.setId(userReview.getId());
-        userReviewOutputDto.setUserId(userReview.getUserId());
+        userReviewOutputDto.setUserId(userReview.getUser());
+        userReviewOutputDto.setBookId(userReview.getBook().getId());
         userReviewOutputDto.setRating(userReview.getRating());
         userReviewOutputDto.setReviewText(userReview.getReviewText());
         userReviewOutputDto.setReviewTitle(userReview.getReviewTitle());
@@ -31,9 +36,13 @@ public class UserReviewMapper {
         return userReviewOutputDto;
     }
 
-    public UserReview userReviewInputDtoToEntity(UserReviewInputDto userReviewInputDto) {
+    public UserReview userReviewInputDtoToEntity(UserReviewInputDto userReviewInputDto, Book book) {
+        if (userReviewInputDto == null || book == null)
+            return null;
+
         UserReview userReview = new UserReview();
-        userReview.setUserId(userReviewInputDto.getUserId());
+        userReview.setUser(userReviewInputDto.getUserId());
+        userReview.setBook(book);
         userReview.setRating(userReviewInputDto.getRating());
         userReview.setReviewText(userReviewInputDto.getReviewText());
         userReview.setReviewTitle(userReviewInputDto.getReviewTitle());
@@ -53,9 +62,14 @@ public class UserReviewMapper {
         return userReview;
     }
 
-    public UserReview userReviewUpdateDtoToEntity(UserReviewUpdateDto userReviewUpdateDto) {
+    public UserReview userReviewUpdateDtoToEntity(UserReviewUpdateDto userReviewUpdateDto, Book book) {
+        if (userReviewUpdateDto == null || book == null)
+            return null;
+
+
         UserReview userReview = new UserReview();
-        userReview.setUserId(userReviewUpdateDto.getUserId());
+        userReview.setUser(userReviewUpdateDto.getUserId());
+        userReview.setBook(book);
         userReview.setRating(userReviewUpdateDto.getRating());
         userReview.setReviewText(userReviewUpdateDto.getReviewText());
         userReview.setReviewTitle(userReviewUpdateDto.getReviewTitle());

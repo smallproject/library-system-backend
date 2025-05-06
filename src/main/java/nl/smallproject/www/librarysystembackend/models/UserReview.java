@@ -1,23 +1,27 @@
 package nl.smallproject.www.librarysystembackend.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity(name = "userreviews")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class UserReview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "userid")
-    private String userId;
+    @Column(name = "user_id")
+    private Long user;
 
-    @Column(name = "bookid")
-    private Long bookId;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
     @Column(name = "rating")
-    private Integer rating;
+    private Double rating;
 
     @Column(name = "reviewtext")
     private String reviewText;
@@ -64,14 +68,6 @@ public class UserReview {
     @Column(name = "anonymousreview")
     private Boolean anonymousReview;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id")
-    private Book book;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
-//    private UserTemp userTemp;
-
     public Long getId() {
         return id;
     }
@@ -80,27 +76,19 @@ public class UserReview {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public Long getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser(Long user) {
+        this.user = user;
     }
 
-    public Long getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
-    }
-
-    public Integer getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
@@ -231,12 +219,4 @@ public class UserReview {
     public void setBook(Book book) {
         this.book = book;
     }
-
-//    public UserTemp getUser() {
-//        return userTemp;
-//    }
-//
-//    public void setUser(UserTemp userTemp) {
-//        this.userTemp = userTemp;
-//    }
 }

@@ -1,10 +1,12 @@
 package nl.smallproject.www.librarysystembackend.services;
 
+import jakarta.transaction.Transactional;
 import nl.smallproject.www.librarysystembackend.dtos.Book.BookInputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Book.BookOutputDto;
 import nl.smallproject.www.librarysystembackend.dtos.Book.BookUpdateDto;
 import nl.smallproject.www.librarysystembackend.exceptions.RecordNotFoundException;
 import nl.smallproject.www.librarysystembackend.mappers.BookMapper;
+import nl.smallproject.www.librarysystembackend.models.Author;
 import nl.smallproject.www.librarysystembackend.models.Book;
 import nl.smallproject.www.librarysystembackend.models.Inventory;
 import nl.smallproject.www.librarysystembackend.models.UserReview;
@@ -12,11 +14,15 @@ import nl.smallproject.www.librarysystembackend.repositories.BookRepository;
 import nl.smallproject.www.librarysystembackend.repositories.InventoryRepository;
 import nl.smallproject.www.librarysystembackend.repositories.UserReviewRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class BookService {
@@ -54,11 +60,13 @@ public class BookService {
         }
     }
 
+    @Transactional
     public Book createBook(BookInputDto bookInputDto) {
         Book book = bookMapper.bookInputDtoToEntity(bookInputDto);
         return bookRepository.save(book);
     }
 
+    @Transactional
     public void updateBook(Long id, BookUpdateDto bookUpdateDto) {
         Book existingBook = bookRepository.getReferenceById(id);
         Book updatedBook = bookMapper.bookUpdateDtoToEntity(bookUpdateDto);
@@ -66,10 +74,12 @@ public class BookService {
         bookRepository.save(existingBook);
     }
 
+    @Transactional
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
 
+    @Transactional
     public void assignUserReviewToBook(Long bookId, Long userReviewId) {
         Optional<Book> bookOptional = Optional.ofNullable(bookRepository.findById(bookId)
                 .orElseThrow(() -> new RecordNotFoundException("Book not found with this id: " + bookId)));
@@ -95,6 +105,7 @@ public class BookService {
         }
     }
 
+    @Transactional
     public void assignInventoryToBook(Long bookId, Long inventoryId) {
         Optional<Book> bookOptional = Optional.ofNullable(bookRepository.findById(bookId)
                 .orElseThrow(() -> new RecordNotFoundException("Book not found with this id: " + bookId)));
@@ -117,5 +128,24 @@ public class BookService {
         } else {
             throw new RecordNotFoundException("Book not found with this id: " +bookId);
         }
+    }
+
+    public Page<Book> getBooksPagination(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return bookRepository.findAll(pageable);
+    }
+
+    public Page<Book> getBookByAuthor(Author author, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return bookRepository.findByAuthor(author, pageable);
+    }
+
+    public List<BookOutputDto> searchBooksByTitle(String title) {
+        List<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
+        List<BookOutputDto> bookOutputDtos = new ArrayList<>();
+        for (Book book : books) {
+            bookOutputDtos.add(bookMapper.bookEntityToOutputDto(book));
+        }
+        return bookOutputDtos;
     }
 }

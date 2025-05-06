@@ -1,21 +1,37 @@
 package nl.smallproject.www.librarysystembackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import nl.smallproject.www.librarysystembackend.models.Address;
+import nl.smallproject.www.librarysystembackend.models.Reservation;
+import nl.smallproject.www.librarysystembackend.models.UserPhoto;
 
 import java.util.List;
 
 @Entity
 @Table(name = "users")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_name", unique = true, nullable = false)
-    private String userName;
+    @Column(name = "username", unique = true, nullable = false)
+    private String username;
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    private String name;
+
+    private String bio;
+
+    private String location;
+
+    private String email;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -36,6 +52,15 @@ public class User {
 
     @Column(nullable = false)
     private boolean isEnabled = true;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Reservation> reservations;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Address address;
+
+    @OneToOne
+    UserPhoto userPhoto;
 
     public User() {
         id = -1L;
@@ -89,12 +114,13 @@ public class User {
         this.roles = roles;
     }
 
-    public String getUserName() {
-        return userName;
+
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -103,5 +129,64 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+        if (address != null) {
+            address.setUser(this);
+        }
+    }
+
+    public UserPhoto getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(UserPhoto userPhoto) {
+        this.userPhoto = userPhoto;
     }
 }

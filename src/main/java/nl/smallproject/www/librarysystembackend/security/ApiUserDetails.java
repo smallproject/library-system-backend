@@ -22,7 +22,7 @@ public class ApiUserDetails implements UserDetails {
     public ApiUserDetails(String username, List<String> roles, String organisation) {
         this.organisation = organisation;
         user = new UserModel();
-        user.setUserName(username);
+        user.setUsername(username);
 
         for (String role : roles) {
             user.getRoles().add(new RoleModel(role));
@@ -47,7 +47,7 @@ public class ApiUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return  user.getId() + "::" + user.getUserName();
+        return  user.getId() + "::" + user.getUsername();
     }
 
     @Override
